@@ -2,19 +2,21 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
+const userRouter = require("./routers/user.route");
+
 const app = express();
 
-//Express Middlewares
+// Express Middlewares
 app.use(cors());
 app.use(express.json());
 
-//Routes
+// Routes
 app.get("/api/getUser", (req, res) => {
 	const user = "Evgeni";
 	res.json(user);
-});
+}).use("/api/users", userRouter);
 
-//Connect to db with mongoose
+// Connect to db with mongoose
 mongoose
 	.connect(process.env.MONGODB_URL, {
 		useNewUrlParser: true,
@@ -26,6 +28,7 @@ mongoose
 		console.log("Database connect");
 	});
 
+// Connecting to client side
 if (process.env.NODE_ENV === "production") {
 	// Exprees will serve up production assets
 	app.use(express.static("client/build"));
