@@ -30,7 +30,7 @@ test("Should signup a new user", async () => {
 			email: "sergey@gmail.com",
 			password: "Aa123456",
 		})
-		.expect(201);
+		.expect(200);
 
 	// Assert that the database was changed correctly
 	const user = await UserModel.findById(response.body.user._id);
