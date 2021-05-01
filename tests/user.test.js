@@ -1,8 +1,8 @@
 const request = require("supertest");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
-const app = require("../app");
-const UserModel = require("../models/user.model");
+const app = require("../src/app");
+const UserModel = require("../src/models/user.model");
 
 const userOneId = new mongoose.Types.ObjectId();
 const userOne = {
