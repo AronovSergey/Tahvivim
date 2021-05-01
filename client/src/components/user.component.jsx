@@ -19,7 +19,7 @@ function User() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          {`Hello ${user} 2`}
+          {`Hello ${user}`}
         </p>
         <a
           className="App-link"
