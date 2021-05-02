@@ -1,26 +1,9 @@
 const request = require("supertest");
-const jwt = require("jsonwebtoken");
-const mongoose = require("mongoose");
 const app = require("../src/app");
 const UserModel = require("../src/models/user.model");
+const { userOneId, userOne, setupDatabase } = require("./fixtures/db");
 
-const userOneId = new mongoose.Types.ObjectId();
-const userOne = {
-	_id: userOneId,
-	name: "Mike",
-	email: "Mike@gmail.com",
-	password: "Aa123456",
-	tokens: [
-		{
-			token: jwt.sign({ _id: userOneId }, process.env.JWT_SECRET),
-		},
-	],
-};
-
-beforeEach(async () => {
-	await UserModel.deleteMany();
-	await new UserModel(userOne).save();
-});
+beforeEach(setupDatabase);
 
 test("Should signup a new user", async () => {
 	const response = await request(app)
@@ -30,7 +13,7 @@ test("Should signup a new user", async () => {
 			email: "sergey@gmail.com",
 			password: "Aa123456",
 		})
-		.expect(200);
+		.expect(201);
 
 	// Assert that the database was changed correctly
 	const user = await UserModel.findById(response.body.user._id);
@@ -96,10 +79,38 @@ test("Should delete account for user", async () => {
 	expect(user).toBeNull();
 });
 
-test("Should not delete account for unauthenticated user", async () => {
+test("Should not delete account for unauthenticate user", async () => {
+	await request(app).delete("/api/users").send().expect(401);
+});
+
+test("Should upload avatar image", async () => {
 	await request(app)
-		.delete("/api/users")
-		.set("Authorization", `Some wrong token`)
-		.send()
-		.expect(401);
+		.post("/api/users/avatar")
+		.set("Authorization", `Bearer ${userOne.tokens[0].token}`)
+		.attach("avatar", "tests/fixtures/profile-pic.jpg")
+		.expect(200);
+	const user = await UserModel.findById(userOneId);
+	expect(user.avatar).toEqual(expect.any(Buffer));
+});
+
+test("Should update valid user fields", async () => {
+	await request(app)
+		.put("/api/users")
+		.set("Authorization", `Bearer ${userOne.tokens[0].token}`)
+		.send({
+			name: "Jess",
+		})
+		.expect(200);
+	const user = await UserModel.findById(userOneId);
+	expect(user.name).toEqual("Jess");
+});
+
+test("Should not update invalid user fields", async () => {
+	await request(app)
+		.put("/api/users")
+		.set("Authorization", `Bearer ${userOne.tokens[0].token}`)
+		.send({
+			location: "Philadelphia",
+		})
+		.expect(400);
 });
