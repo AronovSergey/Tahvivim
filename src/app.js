@@ -2,7 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
-const userRouter = require("./routers/user.route");
+const usersRouter = require("./routers/user.route");
+const activitiesRouter = require("./routers/activity.route");
 
 const app = express();
 
@@ -14,7 +15,9 @@ app.use(express.json());
 app.get("/api/getUser", (req, res) => {
 	const user = "Evgeni";
 	res.json(user);
-}).use("/api/users", userRouter);
+})
+	.use("/api/users", usersRouter)
+	.use("/api/activities", activitiesRouter);
 
 // Connect to db with mongoose
 mongoose

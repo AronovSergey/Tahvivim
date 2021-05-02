@@ -19,7 +19,6 @@ const activitySchema = new mongoose.Schema(
 			},
 			address: {
 				type: String,
-				required: true,
 			},
 		},
 		completed: {
@@ -36,7 +35,8 @@ const activitySchema = new mongoose.Schema(
 			},
 		},
 		participants: {
-			type: Boolean,
+			type: Number,
+			required: true,
 			default: 0,
 			validate(value) {
 				if (value < 0) {
