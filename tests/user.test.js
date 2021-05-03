@@ -27,6 +27,17 @@ test("Should signup a new user", async () => {
 	expect(user.password).not.toBe("Aa123456");
 });
 
+test("Should not signup a new user with existing email", async () => {
+	const response = await request(app)
+		.post("/api/users/signin")
+		.send({
+			name: "Sergey",
+			email: "Mike@gmail.com",
+			password: "Aa123456",
+		})
+		.expect(400);
+});
+
 test("Should login existing user", async () => {
 	const response = await request(app)
 		.post("/api/users/login")
@@ -65,6 +76,32 @@ test("Should not get profile for unauthenticated user", async () => {
 		.set("Authorization", `Some wrong token`)
 		.send()
 		.expect(401);
+});
+
+test("Should not update user if unauthenticated", async () => {
+	await request(app)
+		.put("/api/users")
+		.set("Authorization", `Some wrong token`)
+		.send({ name: "sergeyyy" })
+		.expect(401);
+});
+
+test("Should not update user with existing email", async () => {
+	await request(app)
+		.put("/api/users")
+		.set("Authorization", `Bearer ${userOne.tokens[0].token}`)
+		.send({ email: "Jess@gmail.com" })
+		.expect(400);
+});
+
+test("Should not update user with invalid update key", async () => {
+	const response = await request(app)
+		.put("/api/users")
+		.set("Authorization", `Bearer ${userOne.tokens[0].token}`)
+		.send({ city: "Ashdod" })
+		.expect(400);
+
+	expect(response.body.error).toBe("Invalid updates!");
 });
 
 test("Should delete account for user", async () => {
