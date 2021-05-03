@@ -1,0 +1,34 @@
+.background {
+	width: 28vw;
+	height: 42vw;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+	margin: 20px;
+	justify-content: flex-end;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	cursor: pointer;
+	opacity: 0.9;
+}
+
+.background:hover {
+	opacity: 1;
+}
+
+.music {
+	background-image: url("../../images/music.jpeg");
+}
+
+.games {
+	background-image: url("../../images/games.jpeg");
+}
+
+.sport {
+	background-image: url("../../images/sport.jpeg");
+}
+
+.title_container {
+	width: 100%;
+	background-color: #aaa;
+	opacity: 0.85;
+}
