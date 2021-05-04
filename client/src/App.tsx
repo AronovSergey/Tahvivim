@@ -11,6 +11,7 @@ import Navbar from "./components/navbar/Navbar";
 
 // Pages
 import MainPage from "./pages/Main/Main";
+import Activities from "./pages/Activities/Activities";
 
 function App() {
 	return (
@@ -23,6 +24,11 @@ function App() {
 						<div className="page_body">
 							<Switch>
 								<Route exact path="/" component={MainPage} />
+								<Route
+									exact
+									path="/sport"
+									component={Activities}
+								/>
 							</Switch>
 						</div>
 					</div>
