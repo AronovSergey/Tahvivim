@@ -5,10 +5,11 @@ import { BrowserRouter, Switch } from "react-router-dom";
 import "./App.css";
 
 // Components
-import User from "./components/user.component";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
+import Navbar from "./components/navbar/Navbar";
 
+// Pages
 import MainPage from "./pages/Main/Main";
 
 function App() {
@@ -18,10 +19,10 @@ function App() {
 				<div className="app">
 					<div>
 						<Header />
+						<Navbar />
 						<div className="page_body">
 							<Switch>
 								<Route exact path="/" component={MainPage} />
-								<Route exact path="/evgeny" component={User} />
 							</Switch>
 						</div>
 					</div>
