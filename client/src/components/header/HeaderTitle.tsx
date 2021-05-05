@@ -6,7 +6,12 @@ const HeaderTitle = () => {
 	const history = useHistory();
 
 	return (
-		<Typography variant="h4" noWrap onClick={() => history.push("/")}>
+		<Typography
+			variant="h4"
+			noWrap
+			onClick={() => history.push("/")}
+			style={{ cursor: "pointer" }}
+		>
 			Tahvivim
 		</Typography>
 	);
