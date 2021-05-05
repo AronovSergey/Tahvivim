@@ -73,10 +73,10 @@ const Header = () => {
 				<Toolbar>
 					<Title />
 					<div className={classes.grow} />
-					<Mails number={numberOfEmails} />
-					<Notifications number={12} />
 
 					<div className={classes.sectionDesktop}>
+						<Mails number={numberOfEmails} />
+						<Notifications number={12} />
 						<IconButton
 							edge="end"
 							aria-label="account of current user"
