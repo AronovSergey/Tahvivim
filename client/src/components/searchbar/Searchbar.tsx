@@ -10,7 +10,7 @@ type categoriesType = {
 };
 
 const categories: categoriesType = {
-	"Sport && Camping": [
+	"Sport And Camping": [
 		"Basketball",
 		"Camping",
 		"Cycling",
@@ -36,7 +36,7 @@ const categories: categoriesType = {
 
 const Searchbar = () => {
 	const [value, setValue] = useState<string>("");
-	const [category, setCategory] = useState<string>("Sport && Camping");
+	const [category, setCategory] = useState<string>("Sport And Camping");
 	const [subcategory, setSubcategory] = useState<string>("Basketball");
 	const history = useHistory();
 
