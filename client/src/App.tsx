@@ -8,6 +8,7 @@ import "./App.css";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import Navbar from "./components/navbar/Navbar";
+import Searchbar from "./components/searchbar/Searchbar";
 
 // Pages
 import MainPage from "./pages/Main/Main";
@@ -21,6 +22,7 @@ function App() {
 					<div>
 						<Header />
 						<Navbar />
+						<Searchbar />
 						<div className="page_body">
 							<Switch>
 								<Route exact path="/" component={MainPage} />
