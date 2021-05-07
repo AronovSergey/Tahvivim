@@ -13,6 +13,7 @@ import Navbar from "./components/navbar/Navbar";
 import MainPage from "./pages/Main/Main";
 import Activities from "./pages/Activities/Activities";
 import Login from "./pages/Login/Login";
+import NewActivity from "./pages/NewActivity/NewActivity";
 
 function App() {
 	return (
@@ -31,6 +32,11 @@ function App() {
 									component={Activities}
 								/>
 								<Route exact path="/login" component={Login} />
+								<Route
+									exact
+									path="/create"
+									component={NewActivity}
+								/>
 							</Switch>
 						</div>
 					</div>

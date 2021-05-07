@@ -1,41 +1,44 @@
 import {
-	ActivityType,
-	ActivitiesDispatchTypes,
-	ACTIVITIES_LOADING,
-	ACTIVITIES_SUCCESS,
-	ACTIVITIES_FAIL,
-} from "../actionTypes/activities.actionTypes";
+	UserType,
+	LoginDispatchTypes,
+	LOGIN_LOADING,
+	LOGIN_SUCCESS,
+	LOGIN_FAIL,
+} from "../actionTypes/user.actionTypes";
 
 interface initialStateInterface {
+	user: UserType | {};
+	token: string;
 	loading: boolean;
 	error: boolean;
-	activities: ActivityType[];
 }
 
 const initialState: initialStateInterface = {
+	user: {},
+	token: "",
 	loading: false,
 	error: false,
-	activities: [],
 };
 
 const activitiesReducer = (
 	state: initialStateInterface = initialState,
-	action: ActivitiesDispatchTypes
+	action: LoginDispatchTypes
 ): initialStateInterface => {
 	switch (action.type) {
-		case ACTIVITIES_SUCCESS:
+		case LOGIN_SUCCESS:
 			return {
 				...state,
 				loading: false,
-				activities: action.payload.activities,
+				user: action.payload.user,
+				token: action.payload.token,
 			};
-		case ACTIVITIES_FAIL:
+		case LOGIN_FAIL:
 			return {
 				...state,
 				loading: false,
 				error: true,
 			};
-		case ACTIVITIES_LOADING:
+		case LOGIN_LOADING:
 			return {
 				...state,
 				loading: true,

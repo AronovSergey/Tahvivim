@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/actions/user.actions";
+
+// MUI Stuff
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -34,6 +38,32 @@ const useStyles = makeStyles((theme) => ({
 
 const SignIn = () => {
 	const classes = useStyles();
+	const dispatch = useDispatch();
+
+	const initialInput = { email: "", password: "" };
+	const [inputDetails, setInputDetails] = useState<{
+		email: string;
+		password: string;
+	}>(initialInput);
+	const {
+		email,
+		password,
+	}: { email: string; password: string } = inputDetails;
+
+	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const { name, value } = event.target;
+		setInputDetails((prevSignUpDetails) => {
+			return {
+				...prevSignUpDetails,
+				[name]: value,
+			};
+		});
+	};
+
+	const onFormSubmit = (event: React.SyntheticEvent) => {
+		event.preventDefault();
+		dispatch(login(email, password));
+	};
 
 	return (
 		<Container component="main" maxWidth="xs">
@@ -45,7 +75,11 @@ const SignIn = () => {
 				<Typography component="h1" variant="h5">
 					Sign in
 				</Typography>
-				<form className={classes.form} noValidate>
+				<form
+					className={classes.form}
+					noValidate
+					onSubmit={onFormSubmit}
+				>
 					<TextField
 						variant="outlined"
 						margin="normal"
@@ -56,6 +90,7 @@ const SignIn = () => {
 						name="email"
 						autoComplete="email"
 						autoFocus
+						onChange={handleInputChange}
 					/>
 					<TextField
 						variant="outlined"
@@ -67,6 +102,7 @@ const SignIn = () => {
 						type="password"
 						id="password"
 						autoComplete="current-password"
+						onChange={handleInputChange}
 					/>
 					<FormControlLabel
 						control={<Checkbox value="remember" color="primary" />}

@@ -20,9 +20,9 @@ const HeaderProfileMenu: React.FC<Props> = ({
 }) => {
 	const history = useHistory();
 
-	const onLoginClick = () => {
+	const onButtonClick = (route: string) => {
 		handleMenuClose();
-		history.push("/login");
+		history.push(`/${route}`);
 	};
 
 	return (
@@ -35,9 +35,12 @@ const HeaderProfileMenu: React.FC<Props> = ({
 			open={isMenuOpen}
 			onClose={handleMenuClose}
 		>
+			<MenuItem onClick={() => onButtonClick("create")}>
+				Create Activity
+			</MenuItem>
 			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
 			<MenuItem onClick={handleMenuClose}>My account</MenuItem>
-			<MenuItem onClick={onLoginClick}>Login</MenuItem>
+			<MenuItem onClick={() => onButtonClick("login")}>Login</MenuItem>
 		</Menu>
 	);
 };

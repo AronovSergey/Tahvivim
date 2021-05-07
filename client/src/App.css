@@ -8,6 +8,10 @@ body {
 		"Helvetica Neue", sans-serif;
 }
 
+.page_body {
+	margin: 4% 2%;
+}
+
 h1 {
 	padding: 8px;
 	font-size: 2rem;
@@ -36,6 +40,15 @@ h1 {
 	text-align: center;
 }
 
-.page_body {
-	margin: 4% 2%;
+.background {
+	width: 28vw;
+	height: 42vw;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+	margin: 20px;
+	justify-content: flex-end;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	cursor: pointer;
+	opacity: 0.9;
 }
