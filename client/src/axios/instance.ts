@@ -1,4 +1,5 @@
 import axios from "axios";
+import { AddressType } from "../redux/actionTypes/activities.actionTypes";
 
 declare module "axios" {
 	export interface AxiosRequestConfig {
@@ -6,6 +7,11 @@ declare module "axios" {
 		email?: string;
 		password?: string;
 		headers?: any;
+		title?: string;
+		description?: string;
+		places?: number;
+		participants?: number;
+		address?: AddressType;
 	}
 }
 

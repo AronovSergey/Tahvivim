@@ -51,16 +51,17 @@ const NewActivity = () => {
 
 	const onFormSubmit = (event: React.SyntheticEvent) => {
 		event.preventDefault();
-		dispatch(
-			createNewActivity(
-				token,
-				title,
-				description,
-				places,
-				participants,
-				address
-			)
-		);
+		if (token)
+			dispatch(
+				createNewActivity(
+					token,
+					title,
+					description,
+					places,
+					participants,
+					address
+				)
+			);
 	};
 
 	return (
@@ -132,7 +133,6 @@ const NewActivity = () => {
 						<Grid item xs={12} sm={6}>
 							<TextField
 								variant="outlined"
-								required
 								fullWidth
 								id="participants"
 								label="Number Of Participants"
@@ -158,7 +158,6 @@ const NewActivity = () => {
 						<Grid item xs={12} sm={6}>
 							<TextField
 								variant="outlined"
-								required
 								fullWidth
 								id="address"
 								label="Activity Address"

@@ -1,6 +1,7 @@
 export const LOGIN_LOADING = "LOGIN_LOADING";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGOUT = "LOGOUT";
 
 export type UserType = {
 	_id: string;
@@ -22,4 +23,12 @@ export interface LoginSuccess {
 	payload: { user: UserType; token: string };
 }
 
-export type LoginDispatchTypes = LoginLoading | LoginFail | LoginSuccess;
+export interface Logout {
+	type: typeof LOGOUT;
+}
+
+export type UserDispatchTypes =
+	| LoginLoading
+	| LoginFail
+	| LoginSuccess
+	| Logout;

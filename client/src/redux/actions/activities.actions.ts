@@ -12,7 +12,7 @@ import {
 /* --------------- Fetch All Activities --------------- */
 // extend any library types, by using the typescript decleration merging feature
 
-export const fetchAllActivities = () => async (
+export const fetchAllActivities = (token: string) => async (
 	dispatch: Dispatch<ActivitiesDispatchTypes>
 ) => {
 	try {
@@ -20,12 +20,7 @@ export const fetchAllActivities = () => async (
 			type: ACTIVITIES_LOADING,
 		});
 
-		const { data } = await axiosInstance.get("activities", {
-			headers: {
-				Authorization:
-					"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDhmMGJmYjYyZGMwMTVjMjYyODA3MGQiLCJpYXQiOjE2MTk5ODc0NTF9.67USmt5ogkZ-zD-o_3Kme2kEd4ZifxaJhg0PTOLCe0M",
-			},
-		});
+		const { data } = await axiosInstance.get("activities");
 
 		dispatch({
 			type: ACTIVITIES_SUCCESS,
@@ -48,13 +43,25 @@ export const createNewActivity = (
 		dispatch({
 			type: ACTIVITIES_LOADING,
 		});
+		console.log(token);
 
-		const { data } = await axiosInstance.get("activities", {
-			headers: {
-				Authorization:
-					"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDhmMGJmYjYyZGMwMTVjMjYyODA3MGQiLCJpYXQiOjE2MTk5ODc0NTF9.67USmt5ogkZ-zD-o_3Kme2kEd4ZifxaJhg0PTOLCe0M",
+		const { data } = await axiosInstance.post(
+			"activities",
+			{
+				title,
+				description,
+				places,
+				participants,
+				address,
 			},
-		});
+			{
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			}
+		);
+
+		console.log(data);
 
 		dispatch({
 			type: ACTIVITIES_SUCCESS,

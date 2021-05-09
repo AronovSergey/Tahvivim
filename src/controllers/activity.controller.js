@@ -1,6 +1,15 @@
 const ActivityModel = require("../models/activity.model");
 
 exports.getAllActivities = async (req, res) => {
+	try {
+		const activities = await ActivityModel.find({});
+		res.send(activities);
+	} catch (error) {
+		res.status(500).send(error);
+	}
+};
+
+exports.getAllMyActivities = async (req, res) => {
 	const match = {};
 	if (req.query.completed) {
 		match.completed = req.query.completed === "true";
@@ -33,6 +42,7 @@ exports.getActivity = async (req, res) => {
 };
 
 exports.createActivity = async (req, res) => {
+	console.log("xxx");
 	const activity = new ActivityModel({
 		...req.body,
 		owner: req.user._id,

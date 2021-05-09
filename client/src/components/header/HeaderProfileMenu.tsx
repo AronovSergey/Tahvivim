@@ -1,5 +1,8 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { RootStoreType } from "../../redux/store";
+import { logout } from "../../redux/actions/user.actions";
 
 // MUI Stuff
 import Menu from "@material-ui/core/Menu";
@@ -19,10 +22,18 @@ const HeaderProfileMenu: React.FC<Props> = ({
 	menuId,
 }) => {
 	const history = useHistory();
+	const dispatch = useDispatch();
+	const { token } = useSelector((state: RootStoreType) => state.user);
 
 	const onButtonClick = (route: string) => {
 		handleMenuClose();
 		history.push(`/${route}`);
+	};
+
+	const onLogoutClick = () => {
+		handleMenuClose();
+		dispatch(logout());
+		history.push("/");
 	};
 
 	return (
@@ -35,12 +46,30 @@ const HeaderProfileMenu: React.FC<Props> = ({
 			open={isMenuOpen}
 			onClose={handleMenuClose}
 		>
-			<MenuItem onClick={() => onButtonClick("create")}>
-				Create Activity
-			</MenuItem>
-			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-			<MenuItem onClick={handleMenuClose}>My account</MenuItem>
-			<MenuItem onClick={() => onButtonClick("login")}>Login</MenuItem>
+			{!token && (
+				<>
+					<MenuItem onClick={() => onButtonClick("login")}>
+						Login
+					</MenuItem>
+					<MenuItem onClick={() => onButtonClick("signin")}>
+						Signin
+					</MenuItem>
+				</>
+			)}
+			{token && (
+				<>
+					<MenuItem onClick={() => onButtonClick("profile")}>
+						Profile
+					</MenuItem>
+					<MenuItem onClick={() => onButtonClick("my_activities")}>
+						My Activities
+					</MenuItem>
+					<MenuItem onClick={() => onButtonClick("create")}>
+						Create Activity
+					</MenuItem>
+					<MenuItem onClick={onLogoutClick}>Logout</MenuItem>
+				</>
+			)}
 		</Menu>
 	);
 };

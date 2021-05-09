@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/actions/user.actions";
 
@@ -38,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SignIn = () => {
 	const classes = useStyles();
+	const history = useHistory();
 	const dispatch = useDispatch();
 
 	const initialInput = { email: "", password: "" };
@@ -62,6 +64,7 @@ const SignIn = () => {
 
 	const onFormSubmit = (event: React.SyntheticEvent) => {
 		event.preventDefault();
+		history.push("/");
 		dispatch(login(email, password));
 	};
 

@@ -1,28 +1,40 @@
+import { getUserInstanceFromLocalStorge } from "../../localStorage/localStorage";
 import {
 	UserType,
-	LoginDispatchTypes,
+	UserDispatchTypes,
 	LOGIN_LOADING,
 	LOGIN_SUCCESS,
 	LOGIN_FAIL,
+	LOGOUT,
 } from "../actionTypes/user.actionTypes";
 
 interface initialStateInterface {
 	user: UserType | {};
-	token: string;
+	token: string | null;
 	loading: boolean;
 	error: boolean;
 }
 
-const initialState: initialStateInterface = {
+let initialState: initialStateInterface = {
 	user: {},
-	token: "",
+	token: null,
 	loading: false,
 	error: false,
 };
 
+const myUser = getUserInstanceFromLocalStorge();
+
+if (myUser) {
+	initialState = {
+		...initialState,
+		user: myUser.user,
+		token: myUser.token,
+	};
+}
+
 const activitiesReducer = (
 	state: initialStateInterface = initialState,
-	action: LoginDispatchTypes
+	action: UserDispatchTypes
 ): initialStateInterface => {
 	switch (action.type) {
 		case LOGIN_SUCCESS:
@@ -42,6 +54,12 @@ const activitiesReducer = (
 			return {
 				...state,
 				loading: true,
+			};
+		case LOGOUT:
+			return {
+				...state,
+				user: {},
+				token: null,
 			};
 		default:
 			return state;
