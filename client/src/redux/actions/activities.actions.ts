@@ -1,6 +1,8 @@
 import { Dispatch } from "redux";
 import axiosInstance from "../../axios/instance";
 import { AddressType } from "../actionTypes/activities.actionTypes";
+import alert from "../../UI/Alert/alert";
+import { ERROR } from "../../UI/Alert/AlertTypes";
 
 import {
 	ActivitiesDispatchTypes,
@@ -28,6 +30,7 @@ export const fetchAllActivities = (token: string) => async (
 		});
 	} catch (error) {
 		dispatch({ type: ACTIVITIES_FAIL });
+		alert("Something has gone wrong", ERROR);
 	}
 };
 

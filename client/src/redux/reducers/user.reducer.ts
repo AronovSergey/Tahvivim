@@ -3,20 +3,26 @@ import {
 	UserType,
 	UserDispatchTypes,
 	LOGIN_LOADING,
-	LOGIN_SUCCESS,
 	LOGIN_FAIL,
+	LOGIN_SUCCESS,
+	SIGNIN_LOADING,
+	SIGNIN_FAIL,
+	SIGNIN_SUCCESS,
 	LOGOUT,
 } from "../actionTypes/user.actionTypes";
 
 interface initialStateInterface {
-	user: UserType | {};
+	user: UserType;
 	token: string | null;
 	loading: boolean;
 	error: boolean;
 }
 
 let initialState: initialStateInterface = {
-	user: {},
+	user: {
+		name: "",
+		email: "",
+	},
 	token: null,
 	loading: false,
 	error: false,
@@ -38,6 +44,7 @@ const activitiesReducer = (
 ): initialStateInterface => {
 	switch (action.type) {
 		case LOGIN_SUCCESS:
+		case SIGNIN_SUCCESS:
 			return {
 				...state,
 				loading: false,
@@ -45,12 +52,14 @@ const activitiesReducer = (
 				token: action.payload.token,
 			};
 		case LOGIN_FAIL:
+		case SIGNIN_FAIL:
 			return {
 				...state,
 				loading: false,
 				error: true,
 			};
 		case LOGIN_LOADING:
+		case SIGNIN_LOADING:
 			return {
 				...state,
 				loading: true,
@@ -58,7 +67,10 @@ const activitiesReducer = (
 		case LOGOUT:
 			return {
 				...state,
-				user: {},
+				user: {
+					name: "",
+					email: "",
+				},
 				token: null,
 			};
 		default:

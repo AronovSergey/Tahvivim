@@ -16,6 +16,7 @@ export type ActivityType = {
 	places: number;
 	participants: number;
 	address: AddressType;
+	createdAt: string;
 };
 
 export interface ActivitiesLoading {

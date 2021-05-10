@@ -42,7 +42,6 @@ exports.getActivity = async (req, res) => {
 };
 
 exports.createActivity = async (req, res) => {
-	console.log("xxx");
 	const activity = new ActivityModel({
 		...req.body,
 		owner: req.user._id,

@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { fetchAllActivities } from "../../redux/actions/activities.actions";
 import { RootStoreType } from "../../redux/store";
+import TableRow from "../../components/tableRow/TableRow";
+import { fetchAllActivities } from "../../redux/actions/activities.actions";
+import Spinner from "../../UI/Spinner/Spinner";
 
 const Activities = () => {
 	const dispatch = useDispatch();
-	const { activities, loading, error } = useSelector(
+	const { activities, loading } = useSelector(
 		(state: RootStoreType) => state.activities
 	);
 	const { token } = useSelector((state: RootStoreType) => state.user);
@@ -17,15 +19,22 @@ const Activities = () => {
 
 	return (
 		<div>
-			{loading && <div>Loading</div>}
+			{loading && <Spinner />}
 			{activities.length > 0 && (
 				<div>
 					{activities.map((activity) => (
-						<div>{activity.title}</div>
+						<TableRow
+							key={activity._id}
+							title={activity.title}
+							description={activity.description}
+							places={activity.places}
+							participants={activity.participants}
+							createdAt={activity.createdAt}
+							address={activity.address}
+						/>
 					))}
 				</div>
 			)}
-			{error && <div>Error</div>}
 		</div>
 	);
 };

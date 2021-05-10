@@ -20,6 +20,7 @@ const initialInput: ActivityType = {
 		city: "",
 		address: "",
 	},
+	createdAt: "",
 };
 
 const NewActivity = () => {

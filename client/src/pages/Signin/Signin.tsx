@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { login } from "../../redux/actions/user.actions";
+import { signin } from "../../redux/actions/user.actions";
 
 // MUI Stuff
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -30,29 +28,42 @@ const useStyles = makeStyles((theme) => ({
 	},
 	form: {
 		width: "100%", // Fix IE 11 issue.
-		marginTop: theme.spacing(1),
+		marginTop: theme.spacing(3),
 	},
 	submit: {
 		margin: theme.spacing(3, 0, 2),
 	},
 }));
 
-const SignIn = () => {
+export default function SignUp() {
 	const classes = useStyles();
 	const history = useHistory();
 	const dispatch = useDispatch();
 
-	const initialInput = { email: "", password: "" };
+	const initialInput = {
+		firstName: "",
+		lastName: "",
+		email: "",
+		password: "",
+	};
 	const [inputDetails, setInputDetails] = useState<{
+		firstName: string;
+		lastName: string;
 		email: string;
 		password: string;
 	}>(initialInput);
+
 	const {
 		email,
 		password,
-	}: { email: string; password: string } = inputDetails;
-
-	const [isCheacked, setIsCheacked] = useState(false);
+		firstName,
+		lastName,
+	}: {
+		firstName: string;
+		lastName: string;
+		email: string;
+		password: string;
+	} = inputDetails;
 
 	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target;
@@ -66,7 +77,7 @@ const SignIn = () => {
 
 	const onFormSubmit = (event: React.SyntheticEvent) => {
 		event.preventDefault();
-		dispatch(login(email, password, isCheacked, history));
+		dispatch(signin(`${firstName} ${lastName}`, email, password, history));
 	};
 
 	return (
@@ -77,47 +88,65 @@ const SignIn = () => {
 					<LockOutlinedIcon />
 				</Avatar>
 				<Typography component="h1" variant="h5">
-					Sign in
+					Sign up
 				</Typography>
 				<form
 					className={classes.form}
 					noValidate
 					onSubmit={onFormSubmit}
 				>
-					<TextField
-						variant="outlined"
-						margin="normal"
-						required
-						fullWidth
-						id="email"
-						label="Email Address"
-						name="email"
-						autoComplete="email"
-						autoFocus
-						onChange={handleInputChange}
-					/>
-					<TextField
-						variant="outlined"
-						margin="normal"
-						required
-						fullWidth
-						name="password"
-						label="Password"
-						type="password"
-						id="password"
-						autoComplete="current-password"
-						onChange={handleInputChange}
-					/>
-					<FormControlLabel
-						control={
-							<Checkbox
-								value="remember"
-								color="primary"
-								onChange={() => setIsCheacked(!isCheacked)}
+					<Grid container spacing={2}>
+						<Grid item xs={12} sm={6}>
+							<TextField
+								autoComplete="fname"
+								name="firstName"
+								variant="outlined"
+								required
+								fullWidth
+								id="firstName"
+								label="First Name"
+								autoFocus
+								onChange={handleInputChange}
 							/>
-						}
-						label="Remember me"
-					/>
+						</Grid>
+						<Grid item xs={12} sm={6}>
+							<TextField
+								variant="outlined"
+								required
+								fullWidth
+								id="lastName"
+								label="Last Name"
+								name="lastName"
+								autoComplete="lname"
+								onChange={handleInputChange}
+							/>
+						</Grid>
+						<Grid item xs={12}>
+							<TextField
+								variant="outlined"
+								required
+								fullWidth
+								id="email"
+								label="Email Address"
+								name="email"
+								autoComplete="email"
+								onChange={handleInputChange}
+							/>
+						</Grid>
+						<Grid item xs={12}>
+							<TextField
+								variant="outlined"
+								required
+								fullWidth
+								name="password"
+								label="Password"
+								type="password"
+								id="password"
+								autoComplete="current-password"
+								onChange={handleInputChange}
+							/>
+						</Grid>
+					</Grid>
 					<Button
 						type="submit"
 						fullWidth
@@ -125,12 +154,12 @@ const SignIn = () => {
 						color="primary"
 						className={classes.submit}
 					>
-						Sign In
+						Sign Up
 					</Button>
-					<Grid container>
+					<Grid container justify="flex-end">
 						<Grid item>
-							<Link href="/signin" variant="body2">
-								{"Don't have an account? Sign Up"}
+							<Link href="/login" variant="body2">
+								Already have an account? Sign in
 							</Link>
 						</Grid>
 					</Grid>
@@ -138,6 +167,4 @@ const SignIn = () => {
 			</div>
 		</Container>
 	);
-};
-
-export default SignIn;
+}

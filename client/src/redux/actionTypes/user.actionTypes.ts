@@ -1,10 +1,13 @@
 export const LOGIN_LOADING = "LOGIN_LOADING";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const SIGNIN_LOADING = "SIGNIN_LOADING";
+export const SIGNIN_FAIL = "SIGNIN_FAIL";
+export const SIGNIN_SUCCESS = "SIGNIN_SUCCESS";
 export const LOGOUT = "LOGOUT";
 
 export type UserType = {
-	_id: string;
+	_id?: string;
 	name: string;
 	email: string;
 	avatar?: string;
@@ -23,6 +26,19 @@ export interface LoginSuccess {
 	payload: { user: UserType; token: string };
 }
 
+export interface SigninLoading {
+	type: typeof SIGNIN_LOADING;
+}
+
+export interface SigninFail {
+	type: typeof SIGNIN_FAIL;
+}
+
+export interface SigninSuccess {
+	type: typeof SIGNIN_SUCCESS;
+	payload: { user: UserType; token: string };
+}
+
 export interface Logout {
 	type: typeof LOGOUT;
 }
@@ -31,4 +47,7 @@ export type UserDispatchTypes =
 	| LoginLoading
 	| LoginFail
 	| LoginSuccess
+	| SigninLoading
+	| SigninFail
+	| SigninSuccess
 	| Logout;

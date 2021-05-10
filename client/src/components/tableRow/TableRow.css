@@ -1,0 +1,27 @@
+.table_row__container {
+	box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+		rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+	margin-bottom: 8px;
+	cursor: pointer;
+	border-radius: 8px;
+}
+
+.table_row__element {
+	border-right: 1px dotted #777;
+	padding: 20px;
+}
+
+.table_row__last_colmun {
+	border-right: none;
+}
+
+.table_row__read_more_container {
+	border: none;
+	padding: 0;
+}
+
+.table_row__description {
+	border-top: 1px dotted #777;
+	border-bottom: 1px dotted #777;
+	border-right: none;
+}

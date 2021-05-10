@@ -13,6 +13,7 @@ import Navbar from "./components/navbar/Navbar";
 import MainPage from "./pages/Main/Main";
 import Activities from "./pages/Activities/Activities";
 import Login from "./pages/Login/Login";
+import Signin from "./pages/Signin/Signin";
 import NewActivity from "./pages/NewActivity/NewActivity";
 
 function App() {
@@ -32,6 +33,11 @@ function App() {
 									component={Activities}
 								/>
 								<Route exact path="/login" component={Login} />
+								<Route
+									exact
+									path="/signin"
+									component={Signin}
+								/>
 								<Route
 									exact
 									path="/create"

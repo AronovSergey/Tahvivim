@@ -47,17 +47,17 @@ const HeaderProfileMenu: React.FC<Props> = ({
 			onClose={handleMenuClose}
 		>
 			{!token && (
-				<>
+				<div>
 					<MenuItem onClick={() => onButtonClick("login")}>
 						Login
 					</MenuItem>
 					<MenuItem onClick={() => onButtonClick("signin")}>
 						Signin
 					</MenuItem>
-				</>
+				</div>
 			)}
 			{token && (
-				<>
+				<div>
 					<MenuItem onClick={() => onButtonClick("profile")}>
 						Profile
 					</MenuItem>
@@ -68,7 +68,7 @@ const HeaderProfileMenu: React.FC<Props> = ({
 						Create Activity
 					</MenuItem>
 					<MenuItem onClick={onLogoutClick}>Logout</MenuItem>
-				</>
+				</div>
 			)}
 		</Menu>
 	);

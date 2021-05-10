@@ -1,7 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { Mails, Notifications, Account } from "./HeaderIcons";
+import { RootStoreType } from "../../redux/store";
+
+// MUI Stuff
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import { Mails, Notifications, Account } from "./HeaderIcons";
 
 interface Props {
 	mobileMoreAnchorEl: Element | null;
@@ -22,6 +26,7 @@ const HeaderDesktopMenu: React.FC<Props> = ({
 	numberOfEmails,
 	numberOfNotifications,
 }) => {
+	const { token } = useSelector((state: RootStoreType) => state.user);
 	return (
 		<Menu
 			anchorEl={mobileMoreAnchorEl}
@@ -32,14 +37,19 @@ const HeaderDesktopMenu: React.FC<Props> = ({
 			open={isMobileMenuOpen}
 			onClose={handleMobileMenuClose}
 		>
-			<MenuItem>
-				<Mails number={numberOfEmails} />
-				<p>Messages</p>
-			</MenuItem>
-			<MenuItem>
-				<Notifications number={numberOfNotifications} />
-				<p>Notifications</p>
-			</MenuItem>
+			{token && (
+				<MenuItem>
+					<Mails number={numberOfEmails} />
+					<p>Messages</p>
+				</MenuItem>
+			)}
+			{token && (
+				<MenuItem>
+					<Notifications number={numberOfNotifications} />
+					<p>Notifications</p>
+				</MenuItem>
+			)}
+
 			<MenuItem onClick={handleProfileMenuOpen}>
 				<Account />
 				<p>Profile</p>

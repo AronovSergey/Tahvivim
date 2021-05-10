@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import "./Header.css";
+import { RootStoreType } from "../../redux/store";
+
 // Components
 import Title from "./HeaderTitle";
 import HeaderProfileMenu from "./HeaderProfileMenu";
@@ -36,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = () => {
 	const classes = useStyles();
+	const { token, user } = useSelector((state: RootStoreType) => state.user);
 	const numberOfEmails: number = 4;
 	const numberOfNotifications: number = 12;
 
@@ -75,8 +80,12 @@ const Header = () => {
 					<div className={classes.grow} />
 
 					<div className={classes.sectionDesktop}>
-						<Mails number={numberOfEmails} />
-						<Notifications number={12} />
+						{token && (
+							<>
+								<Mails number={numberOfEmails} />
+								<Notifications number={12} />
+							</>
+						)}
 						<IconButton
 							edge="end"
 							aria-label="account of current user"
@@ -85,7 +94,15 @@ const Header = () => {
 							onClick={handleProfileMenuOpen}
 							color="inherit"
 						>
-							<AccountCircle />
+							{token && (
+								<div className="name_insals">
+									{user.name
+										.split(" ")
+										.map((word) => word[0].toUpperCase())
+										.join(" ")}
+								</div>
+							)}
+							{!token && <AccountCircle />}
 						</IconButton>
 					</div>
 
