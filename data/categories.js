@@ -1,5 +1,5 @@
 export default categories = {
-	"Sport && Camping": [
+	"Sport And Camping": [
 		"Basketball",
 		"Camping",
 		"Cycling",
@@ -10,7 +10,14 @@ export default categories = {
 		"Walking",
 		"Yoga",
 	],
-	music: ["Drums", "Electric Guitar", "Guitar", "Join A Band", "Karaoke"],
+	Music: [
+		"Drums",
+		"Electric Guitar",
+		"Guitar",
+		"Join A Band",
+		"Karaoke",
+		"Singer",
+	],
 	"Games And Other Activities": [
 		"Acting",
 		"Board Games",

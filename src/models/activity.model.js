@@ -12,6 +12,17 @@ const activitySchema = new mongoose.Schema(
 			required: true,
 			trim: true,
 		},
+		date: {
+			type: Date,
+			min: "2021-05-10",
+		},
+		category: {
+			type: String,
+			required: true,
+		},
+		subcategory: {
+			type: String,
+		},
 		address: {
 			city: {
 				type: String,
