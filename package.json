@@ -10,7 +10,8 @@
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
-    "test": "env-cmd ./config/test.env jest --testEnvironment=node --watchAll --runInBand"
+    "test": "env-cmd ./config/test.env jest --testEnvironment=node --watchAll --runInBand",
+    "reset-mongo": "env-cmd config/dev.env node ./data/mongoInitialData.js"
   },
   "keywords": [],
   "author": "",

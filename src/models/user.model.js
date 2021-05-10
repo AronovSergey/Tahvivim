@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const sharp = require("sharp");
 const validator = require("validator");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -108,6 +109,11 @@ userSchema.pre("save", async function (next) {
 	if (!user.isModified("password")) return next();
 
 	user.password = await bcrypt.hash(user.password, 8);
+
+	user.avatar = await sharp("./data/images/no_profile.png")
+		.resize({ width: 300, height: 300 })
+		.png()
+		.toBuffer();
 
 	next();
 });
