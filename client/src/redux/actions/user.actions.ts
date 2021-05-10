@@ -9,13 +9,12 @@ import { SUCCESS, ERROR } from "../../UI/Alert/AlertTypes";
 
 import {
 	UserDispatchTypes,
-	LOGIN_LOADING,
-	LOGIN_FAIL,
+	LOGIN_USER_REDUCER,
+	FAIL_USER_REDUCER,
 	LOGIN_SUCCESS,
-	SIGNIN_LOADING,
-	SIGNIN_FAIL,
 	SIGNIN_SUCCESS,
 	LOGOUT,
+	GET_USER_IMAGE,
 } from "../actionTypes/user.actionTypes";
 
 /* --------------- Login --------------- */
@@ -27,7 +26,7 @@ export const login = (
 ) => async (dispatch: Dispatch<UserDispatchTypes>) => {
 	try {
 		dispatch({
-			type: LOGIN_LOADING,
+			type: LOGIN_USER_REDUCER,
 		});
 
 		const { data } = await axiosInstance.post("/users/login", {
@@ -46,7 +45,7 @@ export const login = (
 
 		history.push("/");
 	} catch (error) {
-		dispatch({ type: LOGIN_FAIL });
+		dispatch({ type: FAIL_USER_REDUCER });
 		alert("Wrong Username Or Password", ERROR);
 	}
 };
@@ -60,7 +59,7 @@ export const signin = (
 ) => async (dispatch: Dispatch<UserDispatchTypes>) => {
 	try {
 		dispatch({
-			type: SIGNIN_LOADING,
+			type: LOGIN_USER_REDUCER,
 		});
 
 		const { data } = await axiosInstance.post("/users/signin", {
@@ -81,7 +80,7 @@ export const signin = (
 		history.push("/");
 	} catch (error) {
 		alert(error.response.data, ERROR);
-		dispatch({ type: SIGNIN_FAIL });
+		dispatch({ type: FAIL_USER_REDUCER });
 	}
 };
 
@@ -93,6 +92,27 @@ export const logout = () => async (dispatch: Dispatch<UserDispatchTypes>) => {
 			type: LOGOUT,
 		});
 	} catch (error) {
-		dispatch({ type: LOGIN_FAIL });
+		dispatch({ type: FAIL_USER_REDUCER });
+	}
+};
+
+/* --------------- Get User Profile Image --------------- */
+export const getUserImage = (id: string) => async (
+	dispatch: Dispatch<UserDispatchTypes>
+) => {
+	try {
+		dispatch({
+			type: LOGIN_USER_REDUCER,
+		});
+
+		const { data } = await axiosInstance.get(`/users/avatar/${id}`);
+
+		console.log(data);
+
+		dispatch({
+			type: GET_USER_IMAGE,
+		});
+	} catch (error) {
+		dispatch({ type: FAIL_USER_REDUCER });
 	}
 };

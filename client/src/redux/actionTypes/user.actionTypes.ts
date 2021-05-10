@@ -1,37 +1,28 @@
-export const LOGIN_LOADING = "LOGIN_LOADING";
-export const LOGIN_FAIL = "LOGIN_FAIL";
+export const LOGIN_USER_REDUCER = "LOGIN_USER_REDUCER";
+export const FAIL_USER_REDUCER = "FAIL_USER_REDUCER";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const SIGNIN_LOADING = "SIGNIN_LOADING";
-export const SIGNIN_FAIL = "SIGNIN_FAIL";
 export const SIGNIN_SUCCESS = "SIGNIN_SUCCESS";
 export const LOGOUT = "LOGOUT";
+export const GET_USER_IMAGE = "GET_USER_IMAGE";
 
 export type UserType = {
-	_id?: string;
+	_id: string;
 	name: string;
 	email: string;
 	avatar?: string;
 };
 
-export interface LoginLoading {
-	type: typeof LOGIN_LOADING;
+export interface LoginUserReducer {
+	type: typeof LOGIN_USER_REDUCER;
 }
 
-export interface LoginFail {
-	type: typeof LOGIN_FAIL;
+export interface FailUserReducer {
+	type: typeof FAIL_USER_REDUCER;
 }
 
 export interface LoginSuccess {
 	type: typeof LOGIN_SUCCESS;
 	payload: { user: UserType; token: string };
-}
-
-export interface SigninLoading {
-	type: typeof SIGNIN_LOADING;
-}
-
-export interface SigninFail {
-	type: typeof SIGNIN_FAIL;
 }
 
 export interface SigninSuccess {
@@ -43,11 +34,14 @@ export interface Logout {
 	type: typeof LOGOUT;
 }
 
+export interface GetUserImage {
+	type: typeof GET_USER_IMAGE;
+}
+
 export type UserDispatchTypes =
-	| LoginLoading
-	| LoginFail
+	| LoginUserReducer
+	| FailUserReducer
 	| LoginSuccess
-	| SigninLoading
-	| SigninFail
 	| SigninSuccess
-	| Logout;
+	| Logout
+	| GetUserImage;

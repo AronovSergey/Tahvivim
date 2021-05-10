@@ -2,11 +2,9 @@ import { getUserInstanceFromLocalStorge } from "../../localStorage/localStorage"
 import {
 	UserType,
 	UserDispatchTypes,
-	LOGIN_LOADING,
-	LOGIN_FAIL,
+	LOGIN_USER_REDUCER,
+	FAIL_USER_REDUCER,
 	LOGIN_SUCCESS,
-	SIGNIN_LOADING,
-	SIGNIN_FAIL,
 	SIGNIN_SUCCESS,
 	LOGOUT,
 } from "../actionTypes/user.actionTypes";
@@ -20,6 +18,7 @@ interface initialStateInterface {
 
 let initialState: initialStateInterface = {
 	user: {
+		_id: "",
 		name: "",
 		email: "",
 	},
@@ -51,15 +50,13 @@ const activitiesReducer = (
 				user: action.payload.user,
 				token: action.payload.token,
 			};
-		case LOGIN_FAIL:
-		case SIGNIN_FAIL:
+		case FAIL_USER_REDUCER:
 			return {
 				...state,
 				loading: false,
 				error: true,
 			};
-		case LOGIN_LOADING:
-		case SIGNIN_LOADING:
+		case LOGIN_USER_REDUCER:
 			return {
 				...state,
 				loading: true,
@@ -68,6 +65,7 @@ const activitiesReducer = (
 			return {
 				...state,
 				user: {
+					_id: "",
 					name: "",
 					email: "",
 				},

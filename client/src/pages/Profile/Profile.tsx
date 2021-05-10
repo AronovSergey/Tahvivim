@@ -1,18 +1,24 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
+
+import { RootStoreType } from "../../redux/store";
+
+// MUI Stuff
 import Paper from "@material-ui/core/Paper";
 
 const Profile = () => {
-	const dispatch = useDispatch();
-
-	useEffect(() => {}, [dispatch]);
+	const { user } = useSelector((state: RootStoreType) => state.user);
 
 	return (
 		<div>
 			<Paper>
 				<div className="profile">
 					<div className="profile__image_wrapper">
-						<img src="" alt="profile" className="profile__image" />
+						<img
+							src={`/api/users/avatar/${user._id}`}
+							alt="profile"
+							className="profile__image"
+						/>
 					</div>
 				</div>
 			</Paper>

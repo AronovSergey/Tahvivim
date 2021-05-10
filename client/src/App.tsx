@@ -15,6 +15,7 @@ import Activities from "./pages/Activities/Activities";
 import Login from "./pages/Login/Login";
 import Signin from "./pages/Signin/Signin";
 import NewActivity from "./pages/NewActivity/NewActivity";
+import Profile from "./pages/Profile/Profile";
 
 function App() {
 	return (
@@ -42,6 +43,11 @@ function App() {
 									exact
 									path="/create"
 									component={NewActivity}
+								/>
+								<Route
+									exact
+									path="/profile"
+									component={Profile}
 								/>
 							</Switch>
 						</div>
