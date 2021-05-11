@@ -3,7 +3,7 @@ export const FAIL_USER_REDUCER = "FAIL_USER_REDUCER";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const SIGNIN_SUCCESS = "SIGNIN_SUCCESS";
 export const LOGOUT = "LOGOUT";
-export const GET_USER_IMAGE = "GET_USER_IMAGE";
+export const POST_USER_IMAGE = "POST_USER_IMAGE";
 
 export type UserType = {
 	_id: string;
@@ -34,8 +34,8 @@ export interface Logout {
 	type: typeof LOGOUT;
 }
 
-export interface GetUserImage {
-	type: typeof GET_USER_IMAGE;
+export interface PostUserImage {
+	type: typeof POST_USER_IMAGE;
 }
 
 export type UserDispatchTypes =
@@ -44,4 +44,4 @@ export type UserDispatchTypes =
 	| LoginSuccess
 	| SigninSuccess
 	| Logout
-	| GetUserImage;
+	| PostUserImage;

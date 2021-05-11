@@ -7,6 +7,7 @@ import {
 	LOGIN_SUCCESS,
 	SIGNIN_SUCCESS,
 	LOGOUT,
+	POST_USER_IMAGE,
 } from "../actionTypes/user.actionTypes";
 
 interface initialStateInterface {
@@ -70,6 +71,11 @@ const activitiesReducer = (
 					email: "",
 				},
 				token: null,
+			};
+		case POST_USER_IMAGE:
+			return {
+				...state,
+				loading: false,
 			};
 		default:
 			return state;

@@ -14,75 +14,70 @@ import {
 	LOGIN_SUCCESS,
 	SIGNIN_SUCCESS,
 	LOGOUT,
-	GET_USER_IMAGE,
+	POST_USER_IMAGE,
 } from "../actionTypes/user.actionTypes";
 
 /* --------------- Login --------------- */
-export const login = (
-	email: string,
-	password: string,
-	isCheacked: boolean,
-	history: any
-) => async (dispatch: Dispatch<UserDispatchTypes>) => {
-	try {
-		dispatch({
-			type: LOGIN_USER_REDUCER,
-		});
+export const login =
+	(email: string, password: string, isCheacked: boolean, history: any) =>
+	async (dispatch: Dispatch<UserDispatchTypes>) => {
+		try {
+			dispatch({
+				type: LOGIN_USER_REDUCER,
+			});
 
-		const { data } = await axiosInstance.post("/users/login", {
-			email,
-			password,
-		});
+			const { data } = await axiosInstance.post("/users/login", {
+				email,
+				password,
+			});
 
-		if (isCheacked) createUserInstanceInLocalStorge(data.token, data.user);
+			if (isCheacked)
+				createUserInstanceInLocalStorge(data.token, data.user);
 
-		dispatch({
-			type: LOGIN_SUCCESS,
-			payload: { user: data.user, token: data.token },
-		});
+			dispatch({
+				type: LOGIN_SUCCESS,
+				payload: { user: data.user, token: data.token },
+			});
 
-		alert("You Have Successfully Logged In", SUCCESS);
+			alert("You Have Successfully Logged In", SUCCESS);
 
-		history.push("/");
-	} catch (error) {
-		dispatch({ type: FAIL_USER_REDUCER });
-		alert("Wrong Username Or Password", ERROR);
-	}
-};
+			history.push("/");
+		} catch (error) {
+			dispatch({ type: FAIL_USER_REDUCER });
+			alert("Wrong Username Or Password", ERROR);
+		}
+	};
 
 /* --------------- Signin --------------- */
-export const signin = (
-	name: string,
-	email: string,
-	password: string,
-	history: any
-) => async (dispatch: Dispatch<UserDispatchTypes>) => {
-	try {
-		dispatch({
-			type: LOGIN_USER_REDUCER,
-		});
+export const signin =
+	(name: string, email: string, password: string, history: any) =>
+	async (dispatch: Dispatch<UserDispatchTypes>) => {
+		try {
+			dispatch({
+				type: LOGIN_USER_REDUCER,
+			});
 
-		const { data } = await axiosInstance.post("/users/signin", {
-			email,
-			password,
-			name,
-		});
+			const { data } = await axiosInstance.post("/users/signin", {
+				email,
+				password,
+				name,
+			});
 
-		createUserInstanceInLocalStorge(data.token, data.user);
+			createUserInstanceInLocalStorge(data.token, data.user);
 
-		dispatch({
-			type: SIGNIN_SUCCESS,
-			payload: { user: data.user, token: data.token },
-		});
+			dispatch({
+				type: SIGNIN_SUCCESS,
+				payload: { user: data.user, token: data.token },
+			});
 
-		alert("You Have Successfully Signed Up", SUCCESS);
+			alert("You Have Successfully Signed Up", SUCCESS);
 
-		history.push("/");
-	} catch (error) {
-		alert(error.response.data, ERROR);
-		dispatch({ type: FAIL_USER_REDUCER });
-	}
-};
+			history.push("/");
+		} catch (error) {
+			alert(error.response.data, ERROR);
+			dispatch({ type: FAIL_USER_REDUCER });
+		}
+	};
 
 /* --------------- Logout --------------- */
 export const logout = () => async (dispatch: Dispatch<UserDispatchTypes>) => {
@@ -97,22 +92,30 @@ export const logout = () => async (dispatch: Dispatch<UserDispatchTypes>) => {
 };
 
 /* --------------- Get User Profile Image --------------- */
-export const getUserImage = (id: string) => async (
-	dispatch: Dispatch<UserDispatchTypes>
-) => {
-	try {
-		dispatch({
-			type: LOGIN_USER_REDUCER,
-		});
+export const postUserProfileImage =
+	(token: string, formData: any) =>
+	async (dispatch: Dispatch<UserDispatchTypes>) => {
+		try {
+			dispatch({
+				type: LOGIN_USER_REDUCER,
+			});
 
-		const { data } = await axiosInstance.get(`/users/avatar/${id}`);
+			const { data } = await axiosInstance.post(
+				`/users/avatar`,
+				formData,
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				}
+			);
 
-		console.log(data);
+			dispatch({
+				type: POST_USER_IMAGE,
+			});
 
-		dispatch({
-			type: GET_USER_IMAGE,
-		});
-	} catch (error) {
-		dispatch({ type: FAIL_USER_REDUCER });
-	}
-};
+			alert(data, SUCCESS);
+		} catch (error) {
+			dispatch({ type: FAIL_USER_REDUCER });
+		}
+	};
