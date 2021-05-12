@@ -9,12 +9,14 @@ import { SUCCESS, ERROR } from "../../UI/Alert/AlertTypes";
 
 import {
 	UserDispatchTypes,
+	UserType,
 	LOGIN_USER_REDUCER,
 	FAIL_USER_REDUCER,
 	LOGIN_SUCCESS,
 	SIGNIN_SUCCESS,
 	LOGOUT,
 	POST_USER_IMAGE,
+	UPDATE_USER_PROFILE,
 } from "../actionTypes/user.actionTypes";
 
 /* --------------- Login --------------- */
@@ -91,7 +93,7 @@ export const logout = () => async (dispatch: Dispatch<UserDispatchTypes>) => {
 	}
 };
 
-/* --------------- Get User Profile Image --------------- */
+/* --------------- Post User Profile Image --------------- */
 export const postUserProfileImage =
 	(token: string, formData: any) =>
 	async (dispatch: Dispatch<UserDispatchTypes>) => {
@@ -115,6 +117,40 @@ export const postUserProfileImage =
 			});
 
 			alert(data, SUCCESS);
+		} catch (error) {
+			dispatch({ type: FAIL_USER_REDUCER });
+		}
+	};
+
+/* --------------- Update User Profile  --------------- */
+export const updateUserProfile =
+	(token: string, name: string, age: string | number, email: string) =>
+	async (dispatch: Dispatch<UserDispatchTypes>) => {
+		try {
+			dispatch({
+				type: LOGIN_USER_REDUCER,
+			});
+
+			const { data }: { data: UserType } = await axiosInstance.put(
+				`/users`,
+				{
+					name,
+					age,
+					email,
+				},
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				}
+			);
+
+			dispatch({
+				type: UPDATE_USER_PROFILE,
+				payload: { user: data },
+			});
+
+			createUserInstanceInLocalStorge(token, data);
 		} catch (error) {
 			dispatch({ type: FAIL_USER_REDUCER });
 		}

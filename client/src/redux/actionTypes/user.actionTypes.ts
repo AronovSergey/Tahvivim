@@ -4,6 +4,7 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const SIGNIN_SUCCESS = "SIGNIN_SUCCESS";
 export const LOGOUT = "LOGOUT";
 export const POST_USER_IMAGE = "POST_USER_IMAGE";
+export const UPDATE_USER_PROFILE = "UPDATE_USER_PROFILE";
 
 export type UserType = {
 	_id: string;
@@ -38,10 +39,16 @@ export interface PostUserImage {
 	type: typeof POST_USER_IMAGE;
 }
 
+export interface UpdateUserProfile {
+	type: typeof UPDATE_USER_PROFILE;
+	payload: { user: UserType };
+}
+
 export type UserDispatchTypes =
 	| LoginUserReducer
 	| FailUserReducer
 	| LoginSuccess
 	| SigninSuccess
 	| Logout
-	| PostUserImage;
+	| PostUserImage
+	| UpdateUserProfile;

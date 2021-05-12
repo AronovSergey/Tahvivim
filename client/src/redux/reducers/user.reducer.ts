@@ -8,6 +8,7 @@ import {
 	SIGNIN_SUCCESS,
 	LOGOUT,
 	POST_USER_IMAGE,
+	UPDATE_USER_PROFILE,
 } from "../actionTypes/user.actionTypes";
 
 interface initialStateInterface {
@@ -77,6 +78,13 @@ const activitiesReducer = (
 				...state,
 				loading: false,
 			};
+		case UPDATE_USER_PROFILE:
+			return {
+				...state,
+				user: action.payload.user,
+				loading: false,
+			};
+
 		default:
 			return state;
 	}
