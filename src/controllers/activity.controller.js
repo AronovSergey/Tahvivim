@@ -1,8 +1,20 @@
 const ActivityModel = require("../models/activity.model");
 
 exports.getAllActivities = async (req, res) => {
+	const match = {};
+
+	if (req.query.category !== "undefined") {
+		match.category = req.query.category;
+		if (req.query.subcategory !== "undefined") {
+			match.subcategory = req.query.subcategory;
+		}
+	}
+
 	try {
-		const activities = await ActivityModel.find({});
+		let activities = await ActivityModel.find(match);
+		activities = activities.filter((activity) =>
+			activity.title.toLowerCase().includes(req.query.term.toLowerCase())
+		);
 		res.send(activities);
 	} catch (error) {
 		res.status(500).send(error);

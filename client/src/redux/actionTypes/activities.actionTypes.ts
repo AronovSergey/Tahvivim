@@ -1,6 +1,7 @@
 export const ACTIVITIES_LOADING = "ACTIVITIES_LOADING";
 export const ACTIVITIES_FAIL = "ACTIVITIES_FAIL";
 export const ACTIVITIES_SUCCESS = "ACTIVITIES_SUCCESS";
+export const UPDATE_SEARCH_PARAMS = "UPDATE_SEARCH_PARAMS";
 
 export type AddressType = {
 	city: string;
@@ -32,7 +33,17 @@ export interface ActivitiesSuccess {
 	payload: { activities: ActivityType[] };
 }
 
+export interface UpdateSearchParams {
+	type: typeof UPDATE_SEARCH_PARAMS;
+	payload: {
+		searchTerm: string | undefined;
+		category: string | undefined;
+		subcategory: string | undefined;
+	};
+}
+
 export type ActivitiesDispatchTypes =
 	| ActivitiesLoading
 	| ActivitiesFail
-	| ActivitiesSuccess;
+	| ActivitiesSuccess
+	| UpdateSearchParams;

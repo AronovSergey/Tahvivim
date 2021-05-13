@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 
 import "./Searchbar.css";
+import { updateSearchParams } from "../../redux/actions/activities.actions";
 
 type categoriesType = {
 	[key: string]: string[];
@@ -35,6 +37,7 @@ const categories: categoriesType = {
 };
 
 const Searchbar = () => {
+	const dispatch = useDispatch();
 	const [value, setValue] = useState<string>("");
 	const [category, setCategory] = useState<string>("Sport And Camping");
 	const [subcategory, setSubcategory] = useState<string>("Basketball");
@@ -42,7 +45,8 @@ const Searchbar = () => {
 
 	const onKeyDown = (event: React.KeyboardEvent) => {
 		if (event.key === "Enter") {
-			history.push(`/search/${value}`);
+			dispatch(updateSearchParams(category, subcategory, value));
+			history.push(`/search`);
 		}
 	};
 

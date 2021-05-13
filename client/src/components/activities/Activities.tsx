@@ -8,14 +8,14 @@ import Spinner from "../../UI/Spinner/Spinner";
 
 const Activities = () => {
 	const dispatch = useDispatch();
-	const { activities, loading } = useSelector(
-		(state: RootStoreType) => state.activities
-	);
+	const { activities, loading, searchTerm, category, subcategory } =
+		useSelector((state: RootStoreType) => state.activities);
 	const { token } = useSelector((state: RootStoreType) => state.user);
 
 	useEffect(() => {
-		if (token) dispatch(fetchAllActivities(token));
-	}, [token, dispatch]);
+		if (token)
+			dispatch(fetchAllActivities(category, subcategory, searchTerm));
+	}, [token, dispatch, category, subcategory, searchTerm]);
 
 	return (
 		<div>

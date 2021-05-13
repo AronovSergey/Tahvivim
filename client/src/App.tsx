@@ -11,7 +11,10 @@ import Navbar from "./components/navbar/Navbar";
 
 // Pages
 import MainPage from "./pages/Main/Main";
-import Activities from "./pages/Activities/Activities";
+import SportActivities from "./pages/SportActivities/SportActivities";
+import MusicActivities from "./pages/MusicActivities/MusicActivities";
+import GamesActivities from "./pages/GamesActivities/GamesActivities";
+import SearchResult from "./pages/SearchResult/SearchResult";
 import Login from "./pages/Login/Login";
 import Signin from "./pages/Signin/Signin";
 import NewActivity from "./pages/NewActivity/NewActivity";
@@ -31,7 +34,22 @@ function App() {
 								<Route
 									exact
 									path="/sport"
-									component={Activities}
+									component={SportActivities}
+								/>
+								<Route
+									exact
+									path="/music"
+									component={MusicActivities}
+								/>
+								<Route
+									exact
+									path="/games"
+									component={GamesActivities}
+								/>
+								<Route
+									exact
+									path="/search"
+									component={SearchResult}
 								/>
 								<Route exact path="/login" component={Login} />
 								<Route

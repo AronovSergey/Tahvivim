@@ -9,19 +9,25 @@ import {
 	ACTIVITIES_LOADING,
 	ACTIVITIES_FAIL,
 	ACTIVITIES_SUCCESS,
+	UPDATE_SEARCH_PARAMS,
 } from "../actionTypes/activities.actionTypes";
 
 /* --------------- Fetch All Activities --------------- */
-// extend any library types, by using the typescript decleration merging feature
-
 export const fetchAllActivities =
-	(token: string) => async (dispatch: Dispatch<ActivitiesDispatchTypes>) => {
+	(
+		category: string | undefined,
+		subcategory: string | undefined,
+		searchTerm: string | undefined
+	) =>
+	async (dispatch: Dispatch<ActivitiesDispatchTypes>) => {
 		try {
 			dispatch({
 				type: ACTIVITIES_LOADING,
 			});
 
-			const { data } = await axiosInstance.get("activities");
+			const { data } = await axiosInstance.get(
+				`activities?term=${searchTerm}&category=${category}&subcategory=${subcategory}`
+			);
 
 			dispatch({
 				type: ACTIVITIES_SUCCESS,
@@ -33,6 +39,7 @@ export const fetchAllActivities =
 		}
 	};
 
+/* --------------- Post New Activity --------------- */
 export const createNewActivity =
 	(
 		token: string,
@@ -70,6 +77,24 @@ export const createNewActivity =
 			dispatch({
 				type: ACTIVITIES_SUCCESS,
 				payload: { activities: data },
+			});
+		} catch (error) {
+			dispatch({ type: ACTIVITIES_FAIL });
+		}
+	};
+
+/* --------------- Update Search Params --------------- */
+export const updateSearchParams =
+	(
+		category: string | undefined,
+		subcategory: string | undefined,
+		searchTerm: string | undefined
+	) =>
+	async (dispatch: Dispatch<ActivitiesDispatchTypes>) => {
+		try {
+			dispatch({
+				type: UPDATE_SEARCH_PARAMS,
+				payload: { category, subcategory, searchTerm },
 			});
 		} catch (error) {
 			dispatch({ type: ACTIVITIES_FAIL });

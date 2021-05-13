@@ -95,7 +95,7 @@ export const logout = () => async (dispatch: Dispatch<UserDispatchTypes>) => {
 
 /* --------------- Post User Profile Image --------------- */
 export const postUserProfileImage =
-	(token: string, formData: any) =>
+	(token: string, formData: any, history: any) =>
 	async (dispatch: Dispatch<UserDispatchTypes>) => {
 		try {
 			dispatch({
