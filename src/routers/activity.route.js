@@ -5,6 +5,7 @@ const router = express.Router();
 
 router
 	.get("/", activityControler.getAllActivities)
+	.get("/my", auth, activityControler.getAllMyActivities)
 	.get("/:id", auth, activityControler.getActivity)
 	.post("/", auth, activityControler.createActivity)
 	.put("/:id", auth, activityControler.updateActivity)

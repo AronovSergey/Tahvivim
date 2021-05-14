@@ -22,6 +22,7 @@ test("Should create activity for user", async () => {
 			title: "Drummer and singer needed for new covers band",
 			description:
 				"Hi, we are a bassist and two guitarists (in 30s and 40s) looking for a drummer and singer to join us and start a new covers band.",
+			category: "Music",
 			address: {
 				city: "Ashdod",
 			},
@@ -43,7 +44,7 @@ test("Should create activity for user", async () => {
 
 test("Should fetch user activities", async () => {
 	const response = await request(app)
-		.get("/api/activities")
+		.get("/api/activities/my")
 		.set("Authorization", `Bearer ${userOne.tokens[0].token}`)
 		.send()
 		.expect(200);

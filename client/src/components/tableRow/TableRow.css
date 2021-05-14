@@ -25,3 +25,14 @@
 	border-bottom: 1px dotted #777;
 	border-right: none;
 }
+
+/* Phone */
+@media (max-width: 600px) {
+	.table_row__mobile_remove_right_border {
+		border-right: none;
+	}
+
+	.table_row__mobile_add_bottom_border {
+		border-bottom: 1px dotted #777;
+	}
+}

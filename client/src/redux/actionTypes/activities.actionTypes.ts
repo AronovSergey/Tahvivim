@@ -8,7 +8,7 @@ export type AddressType = {
 	address?: string;
 };
 
-export type ActivityType = {
+export interface ActivityType {
 	_id?: string;
 	title: string;
 	description: string;
@@ -18,7 +18,7 @@ export type ActivityType = {
 	participants: number;
 	address: AddressType;
 	createdAt: string;
-};
+}
 
 export interface ActivitiesLoading {
 	type: typeof ACTIVITIES_LOADING;
