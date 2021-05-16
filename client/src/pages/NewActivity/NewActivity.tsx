@@ -21,13 +21,13 @@ const initialInput: ActivityType = {
 		address: "",
 	},
 	createdAt: "",
+	date: new Date(),
 };
 
 const NewActivity = () => {
 	const dispatch = useDispatch();
-	const [inputDetails, setInputDetails] = useState<ActivityType>(
-		initialInput
-	);
+	const [inputDetails, setInputDetails] =
+		useState<ActivityType>(initialInput);
 	const { title, description, places, participants, address } = inputDetails;
 	const { token } = useSelector((state: RootStoreType) => state.user);
 

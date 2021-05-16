@@ -13,6 +13,7 @@ export interface TableRowInterface extends ActivityType {
 }
 
 const TableRow: React.FC<ActivityType> = ({
+	date,
 	owner,
 	title,
 	description,
@@ -27,6 +28,7 @@ const TableRow: React.FC<ActivityType> = ({
 	if (isEditable)
 		return (
 			<TableRowEditState
+				date={date}
 				owner={owner}
 				title={title}
 				description={description}
@@ -42,6 +44,7 @@ const TableRow: React.FC<ActivityType> = ({
 	else
 		return (
 			<TableRowRegularState
+				date={date}
 				owner={owner}
 				title={title}
 				description={description}

@@ -24,6 +24,7 @@ const Activities = () => {
 				<div>
 					{activities.map((activity) => (
 						<TableRow
+							date={activity.date}
 							owner={activity.owner}
 							key={activity._id}
 							title={activity.title}

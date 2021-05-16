@@ -18,6 +18,7 @@ export interface ActivityType {
 	participants: number;
 	address: AddressType;
 	createdAt: string;
+	date: Date;
 }
 
 export interface ActivitiesLoading {
