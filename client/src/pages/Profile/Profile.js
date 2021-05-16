@@ -35,6 +35,7 @@ const Profile = () => {
 	const onFormSubmit = (event) => {
 		event.preventDefault();
 		dispatch(updateUserProfile(token, name, age, email));
+		window.location.reload();
 	};
 
 	const handleImageChange = (event) => {
