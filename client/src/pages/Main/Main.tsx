@@ -10,7 +10,7 @@ const Main = () => {
 	return (
 		<div>
 			<Searchbar />
-			<div className="flex-row">
+			<div className="flex-row image-container">
 				<div
 					className="sport background flex-column"
 					onClick={() => history.push("/sport")}

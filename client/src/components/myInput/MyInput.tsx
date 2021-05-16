@@ -13,7 +13,7 @@ const MyInput = ({ name, label, value, onChange }: Props) => {
 		<div className="group">
 			<input
 				type="text"
-				id={name}
+				id={label}
 				name={name}
 				required
 				className="text_input"

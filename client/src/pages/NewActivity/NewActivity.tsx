@@ -67,7 +67,7 @@ const NewActivity = () => {
 
 	return (
 		<Grid container>
-			<Grid item sm={2} />
+			<Grid item xs={12} sm={2} />
 
 			<Grid item xs={12} sm={8} className="new_activity__container">
 				<Grid container>
@@ -77,7 +77,7 @@ const NewActivity = () => {
 							<span style={{ color: "#3f51b5" }}>Activity</span>
 						</h1>
 					</Grid>
-					<Grid xs={12} sm={8}>
+					<Grid item xs={12} sm={8}>
 						<div className="new_activity__image"></div>
 					</Grid>
 				</Grid>
@@ -180,7 +180,7 @@ const NewActivity = () => {
 				</form>
 			</Grid>
 
-			<Grid item sm={2} />
+			<Grid item xs={12} sm={2} />
 		</Grid>
 	);
 };

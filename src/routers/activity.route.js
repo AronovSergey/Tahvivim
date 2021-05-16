@@ -8,7 +8,7 @@ router
 	.get("/my", auth, activityControler.getAllMyActivities)
 	.get("/:id", auth, activityControler.getActivity)
 	.post("/", auth, activityControler.createActivity)
-	.put("/:id", auth, activityControler.updateActivity)
+	.put("/:id", activityControler.updateActivity)
 	.delete("/:id", auth, activityControler.deleteActivity);
 
 module.exports = router;

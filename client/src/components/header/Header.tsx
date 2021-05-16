@@ -45,10 +45,8 @@ const Header = () => {
 	const numberOfNotifications: number = 12;
 
 	// ************ Mobile Menu Section *************
-	const [
-		mobileMoreAnchorEl,
-		setMobileMoreAnchorEl,
-	] = useState<Element | null>(null);
+	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
+		useState<Element | null>(null);
 	const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 	const mobileMenuId = "primary-search-account-menu-mobile";
 	const handleMobileMenuOpen = (event: React.MouseEvent<{}>) => {

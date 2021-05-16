@@ -8,8 +8,7 @@ import TableRowEditState from "../tableRowEditState/TableRowEditState";
 export interface TableRowInterface extends ActivityType {
 	showMore: boolean;
 	setShowMore: React.Dispatch<React.SetStateAction<boolean>>;
-	onEditClick?: () => void;
-	onSaveClick?: () => void;
+	changeEditState: () => void;
 }
 
 const TableRow: React.FC<ActivityType> = ({
@@ -21,6 +20,7 @@ const TableRow: React.FC<ActivityType> = ({
 	participants,
 	address,
 	createdAt,
+	_id,
 }) => {
 	const [showMore, setShowMore] = useState(false);
 	const [isEditable, setIsEditable] = useState(false);
@@ -28,6 +28,7 @@ const TableRow: React.FC<ActivityType> = ({
 	if (isEditable)
 		return (
 			<TableRowEditState
+				_id={_id}
 				date={date}
 				owner={owner}
 				title={title}
@@ -38,7 +39,7 @@ const TableRow: React.FC<ActivityType> = ({
 				createdAt={createdAt}
 				showMore={showMore}
 				setShowMore={setShowMore}
-				onSaveClick={() => setIsEditable(false)}
+				changeEditState={() => setIsEditable(false)}
 			/>
 		);
 	else
@@ -54,7 +55,7 @@ const TableRow: React.FC<ActivityType> = ({
 				createdAt={createdAt}
 				showMore={showMore}
 				setShowMore={setShowMore}
-				onEditClick={() => setIsEditable(true)}
+				changeEditState={() => setIsEditable(true)}
 			/>
 		);
 };

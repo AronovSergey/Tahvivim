@@ -21,19 +21,28 @@ const Activities = () => {
 		<div>
 			{loading && <Spinner />}
 			{activities.length > 0 && (
-				<div>
-					{activities.map((activity) => (
-						<TableRow
-							date={activity.date}
-							owner={activity.owner}
-							key={activity._id}
-							title={activity.title}
-							description={activity.description}
-							places={activity.places}
-							participants={activity.participants}
-							createdAt={activity.createdAt}
-							address={activity.address}
-						/>
+				<div style={{ margin: "0 30px" }}>
+					{activities.map((activity, index) => (
+						<div
+							className={`${
+								index % 2
+									? "primary-background"
+									: "secondary-background"
+							}`}
+						>
+							<TableRow
+								_id={activity._id}
+								date={activity.date}
+								owner={activity.owner}
+								key={activity._id}
+								title={activity.title}
+								description={activity.description}
+								places={activity.places}
+								participants={activity.participants}
+								createdAt={activity.createdAt}
+								address={activity.address}
+							/>
+						</div>
 					))}
 				</div>
 			)}

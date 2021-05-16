@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import moment from "moment";
-import Grid from "@material-ui/core/Grid";
+import { useDispatch } from "react-redux";
 
 import MyInput from "../myInput/MyInput";
 import { TableRowInterface } from "../tableRow/TableRow";
+import { updateActivity } from "../../redux/actions/activities.actions";
+
+import Grid from "@material-ui/core/Grid";
 
 // MUI Stuff
-import Tooltip from "@material-ui/core/Tooltip";
-import IconButton from "@material-ui/core/IconButton";
-import CheckIcon from "@material-ui/icons/Check";
-import { Input } from "@material-ui/core";
+import Input from "@material-ui/core/Input";
+import RenderReadMoreSection from "./RenderReadMoreSection";
 
 const TableRowEditState: React.FC<TableRowInterface> = ({
+	_id,
 	owner,
 	date,
 	title,
@@ -22,8 +24,10 @@ const TableRowEditState: React.FC<TableRowInterface> = ({
 	createdAt,
 	showMore,
 	setShowMore,
-	onSaveClick,
+	changeEditState,
 }) => {
+	const dispatch = useDispatch();
+
 	const [inputDetails, setInputDetails] = useState({
 		date,
 		owner,
@@ -41,7 +45,7 @@ const TableRowEditState: React.FC<TableRowInterface> = ({
 			setInputDetails((prevSignUpDetails) => {
 				return {
 					...prevSignUpDetails,
-					address: { ...address, [name]: value },
+					address: { ...prevSignUpDetails.address, [name]: value },
 				};
 			});
 		} else {
@@ -54,86 +58,8 @@ const TableRowEditState: React.FC<TableRowInterface> = ({
 		}
 	};
 
-	const RenderReadMoreSection = () => {
-		if (showMore) {
-			return (
-				<Grid container className="table_row__read_more_container">
-					<Grid
-						item
-						xs={12}
-						sm={12}
-						className="table_row__description table_row__element"
-						onClick={(e) => {
-							e.stopPropagation();
-						}}
-					>
-						<MyInput
-							name="description"
-							label="Description"
-							value={inputDetails.description}
-							onChange={handleInputChange}
-						/>
-					</Grid>
-					<Grid
-						item
-						xs={12}
-						sm={6}
-						style={{
-							borderBottom: "1px dotted #777",
-						}}
-						className="table_row__element table_row__mobile_remove_right_border"
-					>
-						{`Created At: ${new Date(createdAt).toDateString()}`}
-					</Grid>
-					<Grid
-						item
-						xs={12}
-						sm={6}
-						className="table_row__last_colmun table_row__element"
-						style={{
-							borderBottom: "1px dotted #777",
-						}}
-					>
-						{`Updated At: ${new Date(createdAt).toDateString()}`}
-					</Grid>
-					<Grid
-						item
-						xs={12}
-						sm={6}
-						className="table_row__element
-					table_row__mobile_remove_right_border table_row__mobile_add_bottom_border"
-						onClick={(e) => {
-							e.stopPropagation();
-						}}
-					>
-						{`${address.city} ${
-							address.address ? `- ${address.address}` : ""
-						}`}
-					</Grid>
-					<Grid
-						item
-						container
-						xs={12}
-						sm={6}
-						spacing={10}
-						className="table_row__last_colmun table_row__element"
-					>
-						<Grid item xs={4}>
-							<Tooltip title="Save this activity" placement="top">
-								<IconButton
-									onClick={(e) => {
-										e.stopPropagation();
-										if (onSaveClick) onSaveClick();
-									}}
-								>
-									<CheckIcon color="primary" />
-								</IconButton>
-							</Tooltip>
-						</Grid>
-					</Grid>
-				</Grid>
-			);
-		} else return <></>;
+	const onUpdateSubmit = () => {
+		dispatch(updateActivity(_id, inputDetails));
 	};
 
 	return (
@@ -212,7 +138,18 @@ const TableRowEditState: React.FC<TableRowInterface> = ({
 					onChange={handleInputChange}
 				/>
 			</Grid>
-			<RenderReadMoreSection />
+
+			{showMore && (
+				<RenderReadMoreSection
+					handleInputChange={handleInputChange}
+					description={inputDetails.description}
+					city={inputDetails.address.city}
+					address={inputDetails.address.address}
+					createdAt={createdAt}
+					changeEditState={changeEditState}
+					onUpdateSubmit={onUpdateSubmit}
+				/>
+			)}
 		</Grid>
 	);
 };

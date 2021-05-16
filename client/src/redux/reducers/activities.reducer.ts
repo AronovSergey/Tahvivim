@@ -5,6 +5,7 @@ import {
 	ACTIVITIES_SUCCESS,
 	ACTIVITIES_FAIL,
 	UPDATE_SEARCH_PARAMS,
+	ACTIVITIES_UPDATE_SUCCESS,
 } from "../actionTypes/activities.actionTypes";
 
 interface initialStateInterface {
@@ -46,6 +47,17 @@ const activitiesReducer = (
 			return {
 				...state,
 				loading: true,
+			};
+		case ACTIVITIES_UPDATE_SUCCESS:
+			return {
+				...state,
+				loading: false,
+				activities: [
+					action.payload.activity,
+					...state.activities.filter(
+						(activty) => activty._id !== action.payload.activity._id
+					),
+				],
 			};
 		case UPDATE_SEARCH_PARAMS:
 			return {

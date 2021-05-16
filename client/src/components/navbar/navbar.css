@@ -2,6 +2,7 @@
 	overflow: hidden;
 	background-color: #777;
 	opacity: 0.8;
+	font-size: 7px;
 }
 
 .navbar__link {
@@ -9,7 +10,7 @@
 	float: left;
 	color: white;
 	text-align: center;
-	padding: 14px 16px;
+	padding: 8px 14px;
 	text-decoration: none;
 }
 

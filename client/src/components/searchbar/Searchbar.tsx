@@ -6,6 +6,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 
 import "./Searchbar.css";
 import { updateSearchParams } from "../../redux/actions/activities.actions";
+import Grid from "@material-ui/core/Grid";
 
 type categoriesType = {
 	[key: string]: string[];
@@ -51,55 +52,62 @@ const Searchbar = () => {
 	};
 
 	return (
-		<div className="search_container flex-row">
-			<TextField
-				className="search_field_container"
-				id="search_input"
-				label="Search"
-				placeholder="Search an Activity.."
-				value={value}
-				onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-					setValue(event.target.value)
-				}
-				onKeyDown={onKeyDown}
-				variant="outlined"
-			/>
-
-			<TextField
-				id="category_select"
-				select
-				label="Category"
-				value={category}
-				onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-					setCategory(event.target.value);
-					setSubcategory(categories[event.target.value][0]);
-				}}
-				variant="outlined"
-			>
-				{Object.keys(categories).map((option) => (
-					<MenuItem key={option} value={option}>
-						{option}
-					</MenuItem>
-				))}
-			</TextField>
-
-			<TextField
-				id="subcategory_select"
-				select
-				label="Subcategory"
-				value={subcategory}
-				onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-					setSubcategory(event.target.value)
-				}
-				variant="outlined"
-			>
-				{categories[category].map((option) => (
-					<MenuItem key={option} value={option}>
-						{option}
-					</MenuItem>
-				))}
-			</TextField>
-		</div>
+		<Grid container className="search_container ">
+			<Grid item sm={6} xs={12}>
+				<TextField
+					className="search_field_container"
+					id="search_input"
+					label="Search"
+					fullWidth
+					placeholder="Search an Activity.."
+					value={value}
+					onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+						setValue(event.target.value)
+					}
+					onKeyDown={onKeyDown}
+					variant="outlined"
+				/>
+			</Grid>
+			<Grid item sm={3} xs={6}>
+				<TextField
+					id="category_select"
+					select
+					label="Category"
+					fullWidth
+					value={category}
+					onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+						setCategory(event.target.value);
+						setSubcategory(categories[event.target.value][0]);
+					}}
+					variant="outlined"
+				>
+					{Object.keys(categories).map((option) => (
+						<MenuItem key={option} value={option}>
+							{option}
+						</MenuItem>
+					))}
+				</TextField>
+			</Grid>
+			<Grid item sm={3} xs={6}>
+				<TextField
+					id="subcategory_select"
+					select
+					label="Subcategory"
+					fullWidth
+					value={subcategory}
+					onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+						setSubcategory(event.target.value)
+					}
+					variant="outlined"
+				>
+					{categories[category].map((option) => (
+						<MenuItem key={option} value={option}>
+							{option}
+						</MenuItem>
+					))}
+				</TextField>
+			</Grid>
+		</Grid>
 	);
 };
 

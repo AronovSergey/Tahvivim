@@ -70,13 +70,18 @@ exports.createActivity = async (req, res) => {
 exports.updateActivity = async (req, res) => {
 	const updates = Object.keys(req.body);
 	const allowedUpdates = [
+		"_id",
 		"title",
+		"owner",
+		"address",
 		"description",
 		"address.city",
 		"address.address",
 		"completed",
 		"places",
 		"participants",
+		"date",
+		"createdAt",
 	];
 	const isValidOperation = updates.every((update) =>
 		allowedUpdates.includes(update)
@@ -85,11 +90,10 @@ exports.updateActivity = async (req, res) => {
 	if (!isValidOperation) {
 		return res.status(400).send({ error: "Invalid updates!" });
 	}
-
 	try {
 		const activity = await ActivityModel.findOne({
 			_id: req.params.id,
-			owner: req.user._id,
+			owner: req.body.owner,
 		});
 
 		if (!activity) {

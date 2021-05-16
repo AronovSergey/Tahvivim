@@ -6,10 +6,12 @@ import { ERROR } from "../../UI/Alert/AlertTypes";
 
 import {
 	ActivitiesDispatchTypes,
+	ActivityType,
 	ACTIVITIES_LOADING,
 	ACTIVITIES_FAIL,
 	ACTIVITIES_SUCCESS,
 	UPDATE_SEARCH_PARAMS,
+	ACTIVITIES_UPDATE_SUCCESS,
 } from "../actionTypes/activities.actionTypes";
 
 /* --------------- Fetch All Activities --------------- */
@@ -54,7 +56,6 @@ export const createNewActivity =
 			dispatch({
 				type: ACTIVITIES_LOADING,
 			});
-			console.log(token);
 
 			const { data } = await axiosInstance.post(
 				"activities",
@@ -71,8 +72,6 @@ export const createNewActivity =
 					},
 				}
 			);
-
-			console.log(data);
 
 			dispatch({
 				type: ACTIVITIES_SUCCESS,
@@ -95,6 +94,26 @@ export const updateSearchParams =
 			dispatch({
 				type: UPDATE_SEARCH_PARAMS,
 				payload: { category, subcategory, searchTerm },
+			});
+		} catch (error) {
+			dispatch({ type: ACTIVITIES_FAIL });
+		}
+	};
+
+/* --------------- Update Activity --------------- */
+export const updateActivity =
+	(_id: string | undefined, data: ActivityType) =>
+	async (dispatch: Dispatch<ActivitiesDispatchTypes>) => {
+		try {
+			dispatch({
+				type: ACTIVITIES_LOADING,
+			});
+
+			const response = await axiosInstance.put(`activities/${_id}`, data);
+
+			dispatch({
+				type: ACTIVITIES_UPDATE_SUCCESS,
+				payload: { activity: response.data },
 			});
 		} catch (error) {
 			dispatch({ type: ACTIVITIES_FAIL });

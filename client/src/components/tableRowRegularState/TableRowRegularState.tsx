@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 
@@ -22,7 +22,7 @@ const TableRowUneditable: React.FC<TableRowInterface> = ({
 	createdAt,
 	showMore,
 	setShowMore,
-	onEditClick,
+	changeEditState,
 }) => {
 	const { user } = useSelector((state: RootStoreType) => state.user);
 
@@ -84,7 +84,7 @@ const TableRowUneditable: React.FC<TableRowInterface> = ({
 								<IconButton
 									onClick={(e) => {
 										e.stopPropagation();
-										if (onEditClick) onEditClick();
+										changeEditState();
 									}}
 								>
 									<FavoriteBorderIcon color="primary" />
@@ -99,7 +99,7 @@ const TableRowUneditable: React.FC<TableRowInterface> = ({
 								<IconButton
 									onClick={(e) => {
 										e.stopPropagation();
-										if (onEditClick) onEditClick();
+										changeEditState();
 									}}
 								>
 									<AddIcon color="primary" />
@@ -115,7 +115,7 @@ const TableRowUneditable: React.FC<TableRowInterface> = ({
 									<IconButton
 										onClick={(e) => {
 											e.stopPropagation();
-											if (onEditClick) onEditClick();
+											changeEditState();
 										}}
 									>
 										<EditIcon color="primary" />
@@ -145,10 +145,10 @@ const TableRowUneditable: React.FC<TableRowInterface> = ({
 				<h3>{title}</h3>
 			</Grid>
 			<Grid item xs={4} sm={2} className="table_row__element">
-				{`Number of places: ${participants}/${places}`}
+				<h4>{`Number of places: ${participants}/${places}`}</h4>
 			</Grid>
 			<Grid item xs={4} sm={2} className="table_row__element">
-				{`Location: ${address.city}`}
+				<h4>{`Location: ${address.city}`}</h4>
 			</Grid>
 			<Grid
 				item
@@ -156,7 +156,7 @@ const TableRowUneditable: React.FC<TableRowInterface> = ({
 				sm={3}
 				className="table_row__last_colmun table_row__element"
 			>
-				{`Date: ${new Date(createdAt).toDateString()}`}
+				<h4>{`Date: ${new Date(createdAt).toDateString()}`}</h4>
 			</Grid>
 			<RenderReadMoreSection />
 		</Grid>
