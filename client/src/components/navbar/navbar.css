@@ -2,7 +2,7 @@
 	overflow: hidden;
 	background-color: #777;
 	opacity: 0.8;
-	font-size: 7px;
+	font-size: 12px;
 }
 
 .navbar__link {
@@ -21,4 +21,10 @@
 .navbar__active {
 	background-color: #3f51b5;
 	opacity: 0.8;
+}
+
+@media (max-width: 600px) {
+	.navbar {
+		font-size: 7px;
+	}
 }
