@@ -46,6 +46,8 @@ export const createNewActivity =
 	(
 		token: string,
 		title: string,
+		category: string | undefined,
+		subcategory: string | undefined,
 		description: string,
 		places: number,
 		participants: number,
@@ -61,6 +63,8 @@ export const createNewActivity =
 				"activities",
 				{
 					title,
+					category,
+					subcategory,
 					description,
 					places,
 					participants,

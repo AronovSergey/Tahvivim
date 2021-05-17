@@ -60,6 +60,10 @@ const activitySchema = new mongoose.Schema(
 			required: true,
 			ref: "User",
 		},
+		ownerName: {
+			type: String,
+			required: true,
+		},
 	},
 	{
 		timestamps: true,

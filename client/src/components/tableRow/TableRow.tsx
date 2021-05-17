@@ -14,12 +14,16 @@ export interface TableRowInterface extends ActivityType {
 const TableRow: React.FC<ActivityType> = ({
 	date,
 	owner,
+	ownerName,
+	category,
+	subcategory,
 	title,
 	description,
 	places,
 	participants,
 	address,
 	createdAt,
+	updatedAt,
 	_id,
 }) => {
 	const [showMore, setShowMore] = useState(false);
@@ -31,6 +35,10 @@ const TableRow: React.FC<ActivityType> = ({
 				_id={_id}
 				date={date}
 				owner={owner}
+				ownerName={ownerName}
+				category={category}
+				updatedAt={updatedAt}
+				subcategory={subcategory}
 				title={title}
 				description={description}
 				places={places}
@@ -47,12 +55,16 @@ const TableRow: React.FC<ActivityType> = ({
 			<TableRowRegularState
 				date={date}
 				owner={owner}
+				ownerName={ownerName}
+				category={category}
+				subcategory={subcategory}
 				title={title}
 				description={description}
 				places={places}
 				participants={participants}
 				address={address}
 				createdAt={createdAt}
+				updatedAt={updatedAt}
 				showMore={showMore}
 				setShowMore={setShowMore}
 				changeEditState={() => setIsEditable(true)}

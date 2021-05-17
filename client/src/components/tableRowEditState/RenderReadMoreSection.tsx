@@ -1,30 +1,92 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import MyInput from "../myInput/MyInput";
+import Category from "../categorySelector/Category";
+import Subcategory from "../subcategorySelector/Subcategory";
 
 import Grid from "@material-ui/core/Grid";
+import MuiLink from "@material-ui/core/Link";
 import CheckIcon from "@material-ui/icons/Check";
 import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";
 
-const RenderReadMoreSection: React.FC<{
+interface Props {
 	handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	description: string;
 	city: string;
+	owner: string | undefined;
+	ownerName: string | undefined;
+	category: string | undefined;
+	subcategory: string | undefined;
 	address: string | undefined;
 	changeEditState: () => void;
-	createdAt: string;
+	createdAt: string | undefined;
+	updatedAt: string | undefined;
 	onUpdateSubmit: () => void;
-}> = ({
+	setCategory: (value: string) => void;
+	setSubcategory: (value: string) => void;
+}
+
+const RenderReadMoreSection: React.FC<Props> = ({
 	handleInputChange,
 	description,
 	city,
+	owner,
+	ownerName,
+	category,
+	subcategory,
 	address,
 	changeEditState,
 	createdAt,
+	updatedAt,
 	onUpdateSubmit,
+	setCategory,
+	setSubcategory,
 }) => {
 	return (
 		<Grid container className="table_row__read_more_container">
+			<Grid
+				item
+				xs={12}
+				sm={4}
+				className="table_row__element table_row__element table_row__top_border table_row__mobile_remove_right_border"
+			>
+				{`Owner: `}
+				<MuiLink
+					component={Link}
+					to={`/users/${owner}`}
+					color="primary"
+					variant="body1"
+					className="profile__link"
+				>
+					{ownerName}
+				</MuiLink>
+			</Grid>
+			<Grid
+				item
+				xs={12}
+				sm={4}
+				className="table_row__element table_row__element table_row__top_border table_row__mobile_remove_right_border"
+			>
+				<Category
+					value={category}
+					setCategory={setCategory}
+					setSubcategory={setSubcategory}
+				/>
+			</Grid>
+			<Grid
+				item
+				xs={12}
+				sm={4}
+				className=" table_row__element table_row__top_border table_row__last_colmun"
+			>
+				<Subcategory
+					value={subcategory}
+					category={category}
+					setSubcategory={setSubcategory}
+				/>
+			</Grid>
 			<Grid
 				item
 				xs={12}
@@ -50,7 +112,9 @@ const RenderReadMoreSection: React.FC<{
 				}}
 				className="table_row__element table_row__mobile_remove_right_border"
 			>
-				{`Created At: ${new Date(createdAt).toDateString()}`}
+				{`Created At: ${
+					createdAt ? new Date(createdAt).toDateString() : ""
+				}`}
 			</Grid>
 			<Grid
 				item
@@ -61,7 +125,9 @@ const RenderReadMoreSection: React.FC<{
 					borderBottom: "1px dotted #777",
 				}}
 			>
-				{`Updated At: ${new Date(createdAt).toDateString()}`}
+				{`Updated At: ${
+					updatedAt ? new Date(updatedAt).toDateString() : ""
+				}`}
 			</Grid>
 			<Grid
 				item
@@ -107,7 +173,6 @@ const RenderReadMoreSection: React.FC<{
 						</IconButton>
 					</Tooltip>
 				</Grid>
-				ן
 			</Grid>
 		</Grid>
 	);

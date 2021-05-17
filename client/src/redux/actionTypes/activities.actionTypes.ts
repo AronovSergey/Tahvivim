@@ -14,11 +14,15 @@ export interface ActivityType {
 	title: string;
 	description: string;
 	owner?: string;
+	ownerName?: string;
+	category?: string;
+	subcategory?: string;
 	completed?: boolean;
 	places: number;
 	participants: number;
 	address: AddressType;
-	createdAt: string;
+	createdAt?: string;
+	updatedAt?: string;
 	date: Date;
 }
 

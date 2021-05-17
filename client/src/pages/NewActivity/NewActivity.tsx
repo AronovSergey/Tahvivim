@@ -5,6 +5,8 @@ import "./NewActivity.css";
 import { RootStoreType } from "../../redux/store";
 import { ActivityType } from "../../redux/actionTypes/activities.actionTypes";
 import { createNewActivity } from "../../redux/actions/activities.actions";
+import Category from "../../components/categorySelector/Category";
+import Subcategory from "../../components/subcategorySelector/Subcategory";
 
 // MUI Stuff
 import Grid from "@material-ui/core/Grid";
@@ -20,6 +22,8 @@ const initialInput: ActivityType = {
 		city: "",
 		address: "",
 	},
+	category: "Sport And Camping",
+	subcategory: "Basketball",
 	createdAt: "",
 	date: new Date(),
 };
@@ -28,7 +32,15 @@ const NewActivity = () => {
 	const dispatch = useDispatch();
 	const [inputDetails, setInputDetails] =
 		useState<ActivityType>(initialInput);
-	const { title, description, places, participants, address } = inputDetails;
+	const {
+		title,
+		category,
+		subcategory,
+		description,
+		places,
+		participants,
+		address,
+	} = inputDetails;
 	const { token } = useSelector((state: RootStoreType) => state.user);
 
 	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,12 +69,22 @@ const NewActivity = () => {
 				createNewActivity(
 					token,
 					title,
+					category,
+					subcategory,
 					description,
 					places,
 					participants,
 					address
 				)
 			);
+	};
+
+	const setCategory: (value: string) => void = (value) => {
+		setInputDetails({ ...inputDetails, category: value });
+	};
+
+	const setSubcategory: (value: string) => void = (value) => {
+		setInputDetails({ ...inputDetails, subcategory: value });
 	};
 
 	return (
@@ -100,6 +122,20 @@ const NewActivity = () => {
 								autoComplete="title"
 								autoFocus
 								onChange={handleInputChange}
+							/>
+						</Grid>
+						<Grid item xs={6} sm={6}>
+							<Category
+								value={category}
+								setCategory={setCategory}
+								setSubcategory={setSubcategory}
+							/>
+						</Grid>
+						<Grid item xs={6} sm={6}>
+							<Subcategory
+								value={subcategory}
+								category={category}
+								setSubcategory={setSubcategory}
 							/>
 						</Grid>
 						<Grid item xs={12} sm={12}>

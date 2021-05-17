@@ -45,6 +45,7 @@ const activities = [
 			city: "Ashdod",
 		},
 		owner: userOneId,
+		ownerName: users[0].name,
 	},
 	{
 		title: "Drummer and singer needed for new covers band",
@@ -59,6 +60,7 @@ const activities = [
 		},
 		completed: true,
 		owner: userOneId,
+		ownerName: users[0].name,
 	},
 	{
 		title: "North Texas Outdoors",
@@ -74,6 +76,7 @@ const activities = [
 		},
 		completed: true,
 		owner: userTwoId,
+		ownerName: users[1].name,
 	},
 	{
 		title: "Hong Kong Trail Runners",
@@ -88,7 +91,8 @@ const activities = [
 			city: "Hong Kong, Hong Kong",
 		},
 		completed: true,
-		owner: userOneId,
+		owner: userTwoId,
+		ownerName: users[1].name,
 	},
 	{
 		title: "Bass Player",
@@ -106,7 +110,8 @@ const activities = [
 			city: "Ashdod",
 		},
 		completed: true,
-		owner: userOneId,
+		owner: userThreeId,
+		ownerName: users[2].name,
 	},
 	{
 		title: "Anyone looking for a female jazz singer?",
@@ -119,8 +124,8 @@ const activities = [
 		address: {
 			city: "Tel Aviv",
 		},
-		completed: true,
-		owner: userOneId,
+		owner: userThreeId,
+		ownerName: users[2].name,
 	},
 
 	{
@@ -136,6 +141,7 @@ const activities = [
 		},
 		completed: true,
 		owner: userTwoId,
+		ownerName: users[1].name,
 	},
 
 	{
@@ -150,7 +156,8 @@ const activities = [
 			city: "Rehovot",
 		},
 		completed: true,
-		owner: userThreeId,
+		owner: userOneId,
+		ownerName: users[0].name,
 	},
 	{
 		title: "Old bass player looking to make music",
@@ -165,6 +172,7 @@ const activities = [
 		},
 		completed: true,
 		owner: userOneId,
+		ownerName: users[0].name,
 	},
 
 	{
@@ -186,7 +194,8 @@ const activities = [
 			city: "Northampton",
 		},
 		completed: true,
-		owner: userOneId,
+		owner: userTwoId,
+		ownerName: users[1].name,
 	},
 	{
 		title: "Bass player",
@@ -204,7 +213,8 @@ const activities = [
 			city: "Herts",
 		},
 		completed: true,
-		owner: userOneId,
+		owner: userTwoId,
+		ownerName: users[1].name,
 	},
 
 	{
@@ -219,7 +229,8 @@ const activities = [
 			city: "Atlanta",
 		},
 		completed: true,
-		owner: userThreeId,
+		owner: userOneId,
+		ownerName: users[0].name,
 	},
 ];
 

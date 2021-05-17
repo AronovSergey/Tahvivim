@@ -15,6 +15,9 @@ import RenderReadMoreSection from "./RenderReadMoreSection";
 const TableRowEditState: React.FC<TableRowInterface> = ({
 	_id,
 	owner,
+	ownerName,
+	category,
+	subcategory,
 	date,
 	title,
 	description,
@@ -22,6 +25,7 @@ const TableRowEditState: React.FC<TableRowInterface> = ({
 	participants,
 	address,
 	createdAt,
+	updatedAt,
 	showMore,
 	setShowMore,
 	changeEditState,
@@ -32,11 +36,12 @@ const TableRowEditState: React.FC<TableRowInterface> = ({
 		date,
 		owner,
 		title,
+		category,
+		subcategory,
 		description,
 		places,
 		participants,
 		address,
-		createdAt,
 	});
 
 	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,12 +67,20 @@ const TableRowEditState: React.FC<TableRowInterface> = ({
 		dispatch(updateActivity(_id, inputDetails));
 	};
 
+	const setCategory: (value: string) => void = (value) => {
+		setInputDetails({ ...inputDetails, category: value });
+	};
+
+	const setSubcategory: (value: string) => void = (value) => {
+		setInputDetails({ ...inputDetails, subcategory: value });
+	};
+
 	return (
 		<Grid
 			container
 			className="table_row__container"
 			onClick={() => {
-				setShowMore(!showMore);
+				setShowMore(true);
 			}}
 			style={{ backgroundColor: "white" }}
 		>
@@ -97,12 +110,6 @@ const TableRowEditState: React.FC<TableRowInterface> = ({
 					e.stopPropagation();
 				}}
 			>
-				<MyInput
-					name="participants"
-					label="Participants"
-					value={inputDetails.participants.toString()}
-					onChange={handleInputChange}
-				/>
 				<MyInput
 					name="places"
 					label="Total places"
@@ -137,6 +144,7 @@ const TableRowEditState: React.FC<TableRowInterface> = ({
 					name="date"
 					value={moment(inputDetails.date).format("YYYY-MM-DD")}
 					onChange={handleInputChange}
+					style={{ marginTop: "30px" }}
 				/>
 			</Grid>
 
@@ -145,10 +153,17 @@ const TableRowEditState: React.FC<TableRowInterface> = ({
 					handleInputChange={handleInputChange}
 					description={inputDetails.description}
 					city={inputDetails.address.city}
+					owner={owner}
+					ownerName={ownerName}
+					category={inputDetails.category}
+					subcategory={inputDetails.subcategory}
 					address={inputDetails.address.address}
 					createdAt={createdAt}
+					updatedAt={updatedAt}
 					changeEditState={changeEditState}
 					onUpdateSubmit={onUpdateSubmit}
+					setCategory={setCategory}
+					setSubcategory={setSubcategory}
 				/>
 			)}
 		</Grid>

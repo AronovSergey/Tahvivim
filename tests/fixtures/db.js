@@ -41,6 +41,7 @@ const activityOne = {
 		city: "Ashdod",
 	},
 	owner: userOneId,
+	ownerName: userOne.name,
 };
 
 const activityTwo = {
@@ -56,6 +57,7 @@ const activityTwo = {
 	},
 	completed: true,
 	owner: userOneId,
+	ownerName: userOne.name,
 };
 
 const activityThree = {
@@ -70,6 +72,7 @@ const activityThree = {
 		city: "Ashdod",
 	},
 	owner: userTwoId,
+	ownerName: userTwo.name,
 };
 
 const setupDatabase = async () => {

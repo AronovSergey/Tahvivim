@@ -57,6 +57,7 @@ exports.createActivity = async (req, res) => {
 	const activity = new ActivityModel({
 		...req.body,
 		owner: req.user._id,
+		ownerName: req.user.name,
 	});
 
 	try {
@@ -82,6 +83,8 @@ exports.updateActivity = async (req, res) => {
 		"participants",
 		"date",
 		"createdAt",
+		"category",
+		"subcategory",
 	];
 	const isValidOperation = updates.every((update) =>
 		allowedUpdates.includes(update)

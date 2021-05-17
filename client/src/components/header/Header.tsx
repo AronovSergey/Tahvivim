@@ -7,7 +7,7 @@ import { RootStoreType } from "../../redux/store";
 import Title from "./HeaderTitle";
 import HeaderProfileMenu from "./HeaderProfileMenu";
 import HeaderMobileMenu from "./HeaderMobileMenu";
-import { Mails, Notifications } from "./HeaderIcons";
+//import { Mails, Notifications } from "./HeaderIcons";
 
 // MUI Stuff
 import { makeStyles } from "@material-ui/core/styles";
@@ -78,12 +78,12 @@ const Header = () => {
 					<div className={classes.grow} />
 
 					<div className={classes.sectionDesktop}>
-						{token && (
+						{/* {token && (
 							<>
 								<Mails number={numberOfEmails} />
 								<Notifications number={12} />
 							</>
-						)}
+						)} */}
 						<IconButton
 							edge="end"
 							aria-label="account of current user"

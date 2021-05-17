@@ -24,6 +24,7 @@ const Activities = () => {
 				<div style={{ margin: "0 30px" }}>
 					{activities.map((activity, index) => (
 						<div
+							key={activity._id}
 							className={`${
 								index % 2
 									? "primary-background"
@@ -34,12 +35,15 @@ const Activities = () => {
 								_id={activity._id}
 								date={activity.date}
 								owner={activity.owner}
-								key={activity._id}
+								ownerName={activity.ownerName}
+								category={activity.category}
+								subcategory={activity.subcategory}
 								title={activity.title}
 								description={activity.description}
 								places={activity.places}
 								participants={activity.participants}
 								createdAt={activity.createdAt}
+								updatedAt={activity.updatedAt}
 								address={activity.address}
 							/>
 						</div>

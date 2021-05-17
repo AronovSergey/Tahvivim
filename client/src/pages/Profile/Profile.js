@@ -98,7 +98,7 @@ const Profile = () => {
 							</h1>
 							<MuiLink
 								component={Link}
-								to={`/users/${user.name}`}
+								to={`/users/${user._id}`}
 								color="primary"
 								variant="h6"
 								className="profile__link"
