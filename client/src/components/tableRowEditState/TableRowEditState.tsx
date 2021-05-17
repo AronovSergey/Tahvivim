@@ -69,6 +69,7 @@ const TableRowEditState: React.FC<TableRowInterface> = ({
 			onClick={() => {
 				setShowMore(!showMore);
 			}}
+			style={{ backgroundColor: "white" }}
 		>
 			<Grid
 				item
@@ -98,13 +99,13 @@ const TableRowEditState: React.FC<TableRowInterface> = ({
 			>
 				<MyInput
 					name="participants"
-					label="Number of Participants"
+					label="Participants"
 					value={inputDetails.participants.toString()}
 					onChange={handleInputChange}
 				/>
 				<MyInput
 					name="places"
-					label="Number of places"
+					label="Total places"
 					value={inputDetails.places.toString()}
 					onChange={handleInputChange}
 				/>
