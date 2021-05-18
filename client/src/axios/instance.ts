@@ -15,4 +15,4 @@ declare module "axios" {
 	}
 }
 
-export default axios.create({ baseURL: "api/" });
+export default axios.create({ baseURL: "/api/" });

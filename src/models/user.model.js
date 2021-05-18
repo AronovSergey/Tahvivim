@@ -51,6 +51,10 @@ const userSchema = mongoose.Schema(
 		avatar: {
 			type: Buffer,
 		},
+		favorites: {
+			type: Array,
+			deafult: [],
+		},
 	},
 	{
 		timestamps: true,

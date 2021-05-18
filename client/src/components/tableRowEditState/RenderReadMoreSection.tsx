@@ -69,11 +69,7 @@ const RenderReadMoreSection: React.FC<Props> = ({
 				sm={4}
 				className="table_row__element table_row__element table_row__top_border table_row__mobile_remove_right_border"
 			>
-				<Category
-					value={category}
-					setCategory={setCategory}
-					setSubcategory={setSubcategory}
-				/>
+				<Category value={category} setCategory={setCategory} />
 			</Grid>
 			<Grid
 				item

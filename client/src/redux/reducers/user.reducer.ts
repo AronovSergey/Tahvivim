@@ -9,11 +9,13 @@ import {
 	LOGOUT,
 	POST_USER_IMAGE,
 	UPDATE_USER_PROFILE,
+	ADD_TO_FAVORITE,
+	REMOVE_FROM_FAVORITE,
 } from "../actionTypes/user.actionTypes";
 
 interface initialStateInterface {
 	user: UserType;
-	token: string | null;
+	token: string;
 	loading: boolean;
 	error: boolean;
 }
@@ -23,8 +25,9 @@ let initialState: initialStateInterface = {
 		_id: "",
 		name: "",
 		email: "",
+		favorites: [],
 	},
-	token: null,
+	token: "",
 	loading: false,
 	error: false,
 };
@@ -70,8 +73,9 @@ const activitiesReducer = (
 					_id: "",
 					name: "",
 					email: "",
+					favorites: [],
 				},
-				token: null,
+				token: "",
 			};
 		case POST_USER_IMAGE:
 			return {
@@ -79,12 +83,13 @@ const activitiesReducer = (
 				loading: false,
 			};
 		case UPDATE_USER_PROFILE:
+		case REMOVE_FROM_FAVORITE:
+		case ADD_TO_FAVORITE:
 			return {
 				...state,
 				user: action.payload.user,
 				loading: false,
 			};
-
 		default:
 			return state;
 	}

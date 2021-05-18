@@ -17,6 +17,7 @@ const NotLoggedInPages = () => {
 			<Redirect from="/profile" exact to="/login" />
 			<Route exact path="/login" component={Login} />
 			<Route exact path="/signin" component={Signin} />
+			<Route exact path="/favorites" component={Signin} />
 
 			<Route exact path="/" component={MainPage} />
 			<Route exact path="/sport" component={SportActivities} />

@@ -15,6 +15,8 @@ import IconButton from "@material-ui/core/IconButton";
 import EditIcon from "@material-ui/icons/Edit";
 import AddIcon from "@material-ui/icons/Add";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import grey from "@material-ui/core/colors/grey";
 
 const TableRowUneditable: React.FC<TableRowInterface> = ({
 	owner,
@@ -32,6 +34,10 @@ const TableRowUneditable: React.FC<TableRowInterface> = ({
 	setShowMore,
 	changeEditState,
 	date,
+	isFavorite,
+	setIsFavorite,
+	onFavoriteClick,
+	onRemoveFavoriteClick,
 }) => {
 	const { user } = useSelector((state: RootStoreType) => state.user);
 
@@ -131,10 +137,22 @@ const TableRowUneditable: React.FC<TableRowInterface> = ({
 								<IconButton
 									onClick={(e) => {
 										e.stopPropagation();
-										changeEditState();
+										if (isFavorite) {
+											onRemoveFavoriteClick();
+										} else {
+											onFavoriteClick();
+										}
 									}}
 								>
-									<FavoriteBorderIcon color="primary" />
+									{isFavorite ? (
+										<FavoriteIcon
+											style={{ color: grey[900] }}
+										/>
+									) : (
+										<FavoriteBorderIcon
+											style={{ color: grey[900] }}
+										/>
+									)}
 								</IconButton>
 							</Tooltip>
 						</Grid>
@@ -147,10 +165,9 @@ const TableRowUneditable: React.FC<TableRowInterface> = ({
 									<IconButton
 										onClick={(e) => {
 											e.stopPropagation();
-											changeEditState();
 										}}
 									>
-										<AddIcon color="primary" />
+										<AddIcon style={{ color: grey[900] }} />
 									</IconButton>
 								</Tooltip>
 							</Grid>
@@ -167,7 +184,9 @@ const TableRowUneditable: React.FC<TableRowInterface> = ({
 											changeEditState();
 										}}
 									>
-										<EditIcon color="primary" />
+										<EditIcon
+											style={{ color: grey[900] }}
+										/>
 									</IconButton>
 								</Tooltip>
 							</Grid>

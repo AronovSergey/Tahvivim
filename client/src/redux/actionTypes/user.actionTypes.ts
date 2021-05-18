@@ -5,12 +5,15 @@ export const SIGNIN_SUCCESS = "SIGNIN_SUCCESS";
 export const LOGOUT = "LOGOUT";
 export const POST_USER_IMAGE = "POST_USER_IMAGE";
 export const UPDATE_USER_PROFILE = "UPDATE_USER_PROFILE";
+export const ADD_TO_FAVORITE = "ADD_TO_FAVORITE";
+export const REMOVE_FROM_FAVORITE = "REMOVE_FROM_FAVORITE";
 
 export type UserType = {
 	_id: string;
 	name: string;
 	email: string;
 	avatar?: string;
+	favorites: string[];
 };
 
 export interface LoginUserReducer {
@@ -44,6 +47,16 @@ export interface UpdateUserProfile {
 	payload: { user: UserType };
 }
 
+export interface AddToFavorite {
+	type: typeof ADD_TO_FAVORITE;
+	payload: { user: UserType };
+}
+
+export interface RemoveFromFavorite {
+	type: typeof REMOVE_FROM_FAVORITE;
+	payload: { user: UserType };
+}
+
 export type UserDispatchTypes =
 	| LoginUserReducer
 	| FailUserReducer
@@ -51,4 +64,6 @@ export type UserDispatchTypes =
 	| SigninSuccess
 	| Logout
 	| PostUserImage
-	| UpdateUserProfile;
+	| UpdateUserProfile
+	| AddToFavorite
+	| RemoveFromFavorite;

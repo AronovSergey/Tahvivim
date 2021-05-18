@@ -3,6 +3,7 @@ export const ACTIVITIES_FAIL = "ACTIVITIES_FAIL";
 export const ACTIVITIES_SUCCESS = "ACTIVITIES_SUCCESS";
 export const UPDATE_SEARCH_PARAMS = "UPDATE_SEARCH_PARAMS";
 export const ACTIVITIES_UPDATE_SUCCESS = "ACTIVITIES_UPDATE_SUCCESS";
+export const UPDATE_FAVORITES = "UPDATE_FAVORITES";
 
 export type AddressType = {
 	city: string;
@@ -10,7 +11,7 @@ export type AddressType = {
 };
 
 export interface ActivityType {
-	_id?: string;
+	_id: string;
 	title: string;
 	description: string;
 	owner?: string;

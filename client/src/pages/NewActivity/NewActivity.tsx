@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 
 import "./NewActivity.css";
 import { RootStoreType } from "../../redux/store";
-import { ActivityType } from "../../redux/actionTypes/activities.actionTypes";
 import { createNewActivity } from "../../redux/actions/activities.actions";
 import Category from "../../components/categorySelector/Category";
 import Subcategory from "../../components/subcategorySelector/Subcategory";
@@ -13,7 +12,17 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 
-const initialInput: ActivityType = {
+interface newActivityInterface {
+	title: string;
+	description: string;
+	places: number;
+	participants: number;
+	address: { city: string; address: string };
+	category: string;
+	subcategory: string;
+}
+
+const initialInput: newActivityInterface = {
 	title: "",
 	description: "",
 	places: 0,
@@ -24,14 +33,12 @@ const initialInput: ActivityType = {
 	},
 	category: "Sport And Camping",
 	subcategory: "Basketball",
-	createdAt: "",
-	date: new Date(),
 };
 
 const NewActivity = () => {
 	const dispatch = useDispatch();
 	const [inputDetails, setInputDetails] =
-		useState<ActivityType>(initialInput);
+		useState<newActivityInterface>(initialInput);
 	const {
 		title,
 		category,
@@ -126,15 +133,14 @@ const NewActivity = () => {
 						</Grid>
 						<Grid item xs={6} sm={6}>
 							<Category
-								value={category}
+								value={inputDetails.category}
 								setCategory={setCategory}
-								setSubcategory={setSubcategory}
 							/>
 						</Grid>
 						<Grid item xs={6} sm={6}>
 							<Subcategory
-								value={subcategory}
-								category={category}
+								value={inputDetails.subcategory}
+								category={inputDetails.category}
 								setSubcategory={setSubcategory}
 							/>
 						</Grid>

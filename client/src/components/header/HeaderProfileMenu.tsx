@@ -61,11 +61,15 @@ const HeaderProfileMenu: React.FC<Props> = ({
 					<MenuItem onClick={() => onButtonClick("profile")}>
 						Profile
 					</MenuItem>
+					<MenuItem onClick={() => onButtonClick("create")}>
+						Create Activity
+					</MenuItem>
 					<MenuItem onClick={() => onButtonClick("my_activities")}>
 						My Activities
 					</MenuItem>
-					<MenuItem onClick={() => onButtonClick("create")}>
-						Create Activity
+
+					<MenuItem onClick={() => onButtonClick("favorites")}>
+						My Favorites
 					</MenuItem>
 					<MenuItem onClick={onLogoutClick}>Logout</MenuItem>
 				</div>

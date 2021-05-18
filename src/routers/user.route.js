@@ -20,6 +20,9 @@ router
 		userControler.uploadAvatar,
 		userControler.errorHandler
 	)
-	.delete("/avatar", auth, userControler.deleteAvatar);
+	.delete("/avatar", auth, userControler.deleteAvatar)
+	.post("/favorites", auth, userControler.addToFavorites)
+	.delete("/favorites", auth, userControler.removeFromFavorites)
+	.get("/favorites", auth, userControler.getAllFavorites);
 
 module.exports = router;

@@ -42,11 +42,7 @@ const Searchbar = () => {
 				/>
 			</Grid>
 			<Grid item sm={3} xs={6}>
-				<Category
-					value={category}
-					setCategory={setCategory}
-					setSubcategory={setSubcategory}
-				/>
+				<Category value={category} setCategory={setCategory} />
 			</Grid>
 			<Grid item sm={3} xs={6}>
 				<Subcategory

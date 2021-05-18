@@ -29,10 +29,13 @@ const TableRowEditState: React.FC<TableRowInterface> = ({
 	showMore,
 	setShowMore,
 	changeEditState,
+	isFavorite,
+	setIsFavorite,
 }) => {
 	const dispatch = useDispatch();
 
 	const [inputDetails, setInputDetails] = useState({
+		_id,
 		date,
 		owner,
 		title,
@@ -43,7 +46,6 @@ const TableRowEditState: React.FC<TableRowInterface> = ({
 		participants,
 		address,
 	});
-
 	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target;
 		if (name === "city" || name === "address") {

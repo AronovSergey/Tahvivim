@@ -35,10 +35,9 @@ const categories: categoriesType = {
 interface Props {
 	value: string | undefined;
 	setCategory: (value: string) => void;
-	setSubcategory: (value: string) => void;
 }
 
-const Category: React.FC<Props> = ({ value, setCategory, setSubcategory }) => {
+const Category: React.FC<Props> = ({ value, setCategory }) => {
 	return (
 		<TextField
 			id="category_select"

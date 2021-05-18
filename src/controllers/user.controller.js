@@ -1,5 +1,6 @@
 const sharp = require("sharp");
 const UserModel = require("../models/user.model");
+const ActivitiesModel = require("../models/activity.model");
 
 exports.getMyProfile = async (req, res) => {
 	res.send(req.user);
@@ -117,4 +118,44 @@ exports.getAvatar = async (req, res) => {
 
 exports.errorHandler = (error, req, res, next) => {
 	res.status(400).send({ error: error.message });
+};
+
+exports.addToFavorites = async (req, res) => {
+	const { id } = req.body;
+	try {
+		if (!req.user.favorites.includes(id))
+			await req.user.updateOne({ $push: { favorites: id } });
+
+		const user = await UserModel.findById(req.user._id);
+
+		res.status(200).json(user);
+	} catch (error) {
+		res.status(404).send(error);
+	}
+};
+
+exports.removeFromFavorites = async (req, res) => {
+	const { id } = req.body;
+	try {
+		if (req.user.favorites.includes(id))
+			await req.user.updateOne({ $pull: { favorites: id } });
+
+		const user = await UserModel.findById(req.user._id);
+
+		res.status(200).json(user);
+	} catch (error) {
+		res.status(404).send(error);
+	}
+};
+
+exports.getAllFavorites = async (req, res) => {
+	try {
+		const favorites = req.user.favorites;
+		const favoritesArrayOfObjects = await ActivitiesModel.find({
+			_id: { $in: favorites },
+		});
+		res.status(200).json(favoritesArrayOfObjects);
+	} catch (error) {
+		res.status(404).send(error);
+	}
 };

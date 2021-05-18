@@ -17,6 +17,8 @@ import {
 	LOGOUT,
 	POST_USER_IMAGE,
 	UPDATE_USER_PROFILE,
+	ADD_TO_FAVORITE,
+	REMOVE_FROM_FAVORITE,
 } from "../actionTypes/user.actionTypes";
 
 /* --------------- Login --------------- */
@@ -153,5 +155,57 @@ export const updateUserProfile =
 			createUserInstanceInLocalStorge(token, data);
 		} catch (error) {
 			dispatch({ type: FAIL_USER_REDUCER });
+		}
+	};
+
+/* --------------- Like a post  --------------- */
+export const addToFavorites =
+	(token: string, id: string) =>
+	async (dispatch: Dispatch<UserDispatchTypes>) => {
+		try {
+			const { data }: { data: UserType } = await axiosInstance.post(
+				`/users/favorites`,
+				{ id },
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				}
+			);
+
+			dispatch({
+				type: ADD_TO_FAVORITE,
+				payload: { user: data },
+			});
+
+			createUserInstanceInLocalStorge(token, data);
+		} catch (error) {
+			alert("Somthing gone wrong", ERROR);
+		}
+	};
+
+/* --------------- Like a post  --------------- */
+export const removeFromFavorites =
+	(token: string, id: string) =>
+	async (dispatch: Dispatch<UserDispatchTypes>) => {
+		try {
+			const { data }: { data: UserType } = await axiosInstance.delete(
+				`/users/favorites`,
+				{
+					data: { id },
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				}
+			);
+
+			dispatch({
+				type: REMOVE_FROM_FAVORITE,
+				payload: { user: data },
+			});
+
+			createUserInstanceInLocalStorge(token, data);
+		} catch (error) {
+			alert("Somthing gone wrong", ERROR);
 		}
 	};
