@@ -35,7 +35,7 @@ const activityOne = {
 	description:
 		"If you always run by yourself, you're missing out on the many benefits of group training. Running with a group not only helps to expand your social circle, but it also boosts motivation and can improve your athletic performance.",
 	places: 4,
-	participants: 2,
+	participants: [userOne],
 	category: "Sport And Camping",
 	address: {
 		city: "Ashdod",
@@ -50,7 +50,7 @@ const activityTwo = {
 	description:
 		"Hi, we are a bassist and two guitarists (in 30s and 40s) looking for a drummer and singer to join us and start a new covers band.",
 	places: 1,
-	participants: 0,
+	participants: [userOne],
 	category: "Music",
 	address: {
 		city: "Ashdod",
@@ -66,7 +66,7 @@ const activityThree = {
 	description:
 		"We need an Ozzy (female or male vocalist) to join our Black Sabbath covers band.",
 	places: 4,
-	participants: 0,
+	participants: [userTwo],
 	category: "Music",
 	address: {
 		city: "Ashdod",

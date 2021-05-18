@@ -37,7 +37,7 @@ const activities = [
 		description:
 			"If you always run by yourself, you're missing out on the many benefits of group training. Running with a group not only helps to expand your social circle, but it also boosts motivation and can improve your athletic performance.",
 		places: 4,
-		participants: 2,
+		participants: [users[0]],
 		category: "Sport And Camping",
 		subcategory: "Walking",
 		date: "2021-05-22",
@@ -52,7 +52,7 @@ const activities = [
 		description:
 			"Hi, we are a bassist and two guitarists (in 30s and 40s) looking for a drummer and singer to join us and start a new covers band.",
 		places: 1,
-		participants: 0,
+		participants: [users[0]],
 		category: "Music",
 		subcategory: "Drums",
 		address: {
@@ -66,8 +66,8 @@ const activities = [
 		title: "North Texas Outdoors",
 		description:
 			"This group is for those who love outdoor activities. Hiking, camping, backpacking, mountaineering, mountain biking, canoeing, kayaking, rock climbing, spelunking, walking, jogging, cycling, swimming, as well as other sports, are all activities that are possibilities for our calendar.",
-		places: 1,
-		participants: 0,
+		places: 2,
+		participants: [users[1]],
 		category: "Sport And Camping",
 		subcategory: "Walking",
 		date: "2021-05-25",
@@ -83,7 +83,7 @@ const activities = [
 		description:
 			"Trailrunning is getting more popular than ever. The purpose of this group is to get as many trail runners possible who are interested to be together for trail running and doing community works. Anyone who is interested to run and contribute to this group is welcomed.",
 		places: 6,
-		participants: 3,
+		participants: [users[1]],
 		category: "Sport And Camping",
 		subcategory: "Walking",
 		date: "2021-05-26",
@@ -102,8 +102,8 @@ const activities = [
 			We're a very relaxed, close knit and friendly bunch so if your a bit of a diva we're probably not for you.
 			
 			We rehearse weekly on a Tuesday in Baldock or if recording in Codicote and look to play once or twice a month.`,
-		places: 1,
-		participants: 0,
+		places: 2,
+		participants: [users[2]],
 		category: "Music",
 		subcategory: "Guitar",
 		address: {
@@ -117,8 +117,8 @@ const activities = [
 		title: "Anyone looking for a female jazz singer?",
 		description:
 			"Hi, I was a lead singer in a 5 piece jazz band for 5 years and then I relocated to Dubai for 3 years. I really miss singing with the band and I would love to take it up again. We were quite a busy band working our normal working lives, rehearsing regularly and playing all sorts of gigs at the weekend. Blues, Jazz and Swing but I'll take a crack at most things! Contact me if your interested in getting together for a jam.",
-		places: 1,
-		participants: 0,
+		places: 2,
+		participants: [users[2]],
 		category: "Music",
 		subcategory: "Singer",
 		address: {
@@ -132,8 +132,8 @@ const activities = [
 		title: "Dear Monday seeking bassist",
 		description:
 			"Established indie/alt band Dear Monday are looking for a bassist to join us.",
-		places: 1,
-		participants: 0,
+		places: 2,
+		participants: [users[1]],
 		category: "Music",
 		subcategory: "Guitar",
 		address: {
@@ -148,8 +148,8 @@ const activities = [
 		title: "Singer/recording artist",
 		description:
 			"Hi, we are a bassist and two guitarists (in 30s and 40s) looking for a drummer and singer to join us and start a new covers band.",
-		places: 1,
-		participants: 0,
+		places: 2,
+		participants: [users[0]],
 		category: "Music",
 		subcategory: "Guitar",
 		address: {
@@ -164,7 +164,7 @@ const activities = [
 		description:
 			"I play bass and I'd love to meet other musicians to make music together. I've been playing a while and I'm reasonably competent but I'm not a Jaco Pastorius. I can read music or work from chords/tab and commit to memory (eventually)! As I'm retired I can meet (once we're allowed) during the day.",
 		places: 1,
-		participants: 0,
+		participants: [users[0]],
 		category: "Music",
 		subcategory: "Guitar",
 		address: {
@@ -186,8 +186,8 @@ const activities = [
 			Must be committed and have transport.
 			
 			Message for more details.`,
-		places: 1,
-		participants: 0,
+		places: 2,
+		participants: [users[1]],
 		category: "Music",
 		subcategory: "Guitar",
 		address: {
@@ -205,8 +205,8 @@ const activities = [
 			Looking for committed comprades to make people dance.
 			
 			Cheers`,
-		places: 1,
-		participants: 0,
+		places: 2,
+		participants: [users[1]],
 		category: "Music",
 		subcategory: "Guitar",
 		address: {
@@ -221,7 +221,7 @@ const activities = [
 		title: "Atlanta Running Meetup",
 		description: "OFFICIAL REOPENING DATE: MAY 22ND 2021",
 		places: 10,
-		participants: 0,
+		participants: [users[0]],
 		category: "Sport And Camping",
 		subcategory: "Walking",
 		date: "2021-05-22",

@@ -20,7 +20,7 @@ export interface ActivityType {
 	subcategory?: string;
 	completed?: boolean;
 	places: number;
-	participants: number;
+	participants: [];
 	address: AddressType;
 	createdAt?: string;
 	updatedAt?: string;

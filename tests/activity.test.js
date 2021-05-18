@@ -27,6 +27,7 @@ test("Should create activity for user", async () => {
 				city: "Ashdod",
 			},
 			places: 1,
+			participants: [userOne],
 		})
 		.expect(201);
 
@@ -37,7 +38,7 @@ test("Should create activity for user", async () => {
 		"Drummer and singer needed for new covers band"
 	);
 
-	expect(activity.participants).toBe(0);
+	expect(activity.participants.length).toBe(1);
 
 	expect(activity.completed).toBe(false);
 });

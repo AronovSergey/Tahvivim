@@ -15,22 +15,16 @@ import RenderReadMoreSection from "./RenderReadMoreSection";
 const TableRowEditState: React.FC<TableRowInterface> = ({
 	_id,
 	owner,
-	ownerName,
 	category,
 	subcategory,
 	date,
 	title,
 	description,
 	places,
-	participants,
 	address,
-	createdAt,
-	updatedAt,
 	showMore,
 	setShowMore,
 	changeEditState,
-	isFavorite,
-	setIsFavorite,
 }) => {
 	const dispatch = useDispatch();
 
@@ -43,7 +37,6 @@ const TableRowEditState: React.FC<TableRowInterface> = ({
 		subcategory,
 		description,
 		places,
-		participants,
 		address,
 	});
 	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -156,12 +149,9 @@ const TableRowEditState: React.FC<TableRowInterface> = ({
 					description={inputDetails.description}
 					city={inputDetails.address.city}
 					owner={owner}
-					ownerName={ownerName}
 					category={inputDetails.category}
 					subcategory={inputDetails.subcategory}
 					address={inputDetails.address.address}
-					createdAt={createdAt}
-					updatedAt={updatedAt}
 					changeEditState={changeEditState}
 					onUpdateSubmit={onUpdateSubmit}
 					setCategory={setCategory}

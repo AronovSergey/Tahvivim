@@ -58,6 +58,7 @@ exports.createActivity = async (req, res) => {
 		...req.body,
 		owner: req.user._id,
 		ownerName: req.user.name,
+		participants: [req.user],
 	});
 
 	try {
@@ -80,7 +81,6 @@ exports.updateActivity = async (req, res) => {
 		"address.address",
 		"completed",
 		"places",
-		"participants",
 		"date",
 		"createdAt",
 		"category",

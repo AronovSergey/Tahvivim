@@ -2,11 +2,10 @@ import { Dispatch } from "redux";
 import axiosInstance from "../../axios/instance";
 import { AddressType } from "../actionTypes/activities.actionTypes";
 import alert from "../../UI/Alert/alert";
-import { ERROR } from "../../UI/Alert/AlertTypes";
+import { ERROR, SUCCESS } from "../../UI/Alert/AlertTypes";
 
 import {
 	ActivitiesDispatchTypes,
-	ActivityType,
 	ACTIVITIES_LOADING,
 	ACTIVITIES_FAIL,
 	ACTIVITIES_SUCCESS,
@@ -50,7 +49,6 @@ export const createNewActivity =
 		subcategory: string | undefined,
 		description: string,
 		places: number,
-		participants: number,
 		address: AddressType
 	) =>
 	async (dispatch: Dispatch<ActivitiesDispatchTypes>) => {
@@ -67,7 +65,6 @@ export const createNewActivity =
 					subcategory,
 					description,
 					places,
-					participants,
 					address,
 				},
 				{
@@ -81,7 +78,9 @@ export const createNewActivity =
 				type: ACTIVITIES_SUCCESS,
 				payload: { activities: data },
 			});
+			alert("Activiy has successfully created", SUCCESS);
 		} catch (error) {
+			alert("Something has gone wrong", ERROR);
 			dispatch({ type: ACTIVITIES_FAIL });
 		}
 	};
@@ -106,7 +105,7 @@ export const updateSearchParams =
 
 /* --------------- Update Activity --------------- */
 export const updateActivity =
-	(_id: string | undefined, data: ActivityType) =>
+	(_id: string, data: {}) =>
 	async (dispatch: Dispatch<ActivitiesDispatchTypes>) => {
 		try {
 			dispatch({

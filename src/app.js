@@ -4,6 +4,7 @@ const cors = require("cors");
 
 const usersRouter = require("./routers/user.route");
 const activitiesRouter = require("./routers/activity.route");
+const participantsRouter = require("./routers/participant.route");
 
 const app = express();
 
@@ -17,7 +18,8 @@ app.get("/api/getUser", (req, res) => {
 	res.json(user);
 })
 	.use("/api/users", usersRouter)
-	.use("/api/activities", activitiesRouter);
+	.use("/api/activities", activitiesRouter)
+	.use("/api/participants", participantsRouter);
 
 // Connect to db with mongoose
 mongoose

@@ -16,7 +16,6 @@ interface newActivityInterface {
 	title: string;
 	description: string;
 	places: number;
-	participants: number;
 	address: { city: string; address: string };
 	category: string;
 	subcategory: string;
@@ -26,7 +25,6 @@ const initialInput: newActivityInterface = {
 	title: "",
 	description: "",
 	places: 0,
-	participants: 0,
 	address: {
 		city: "",
 		address: "",
@@ -39,16 +37,9 @@ const NewActivity = () => {
 	const dispatch = useDispatch();
 	const [inputDetails, setInputDetails] =
 		useState<newActivityInterface>(initialInput);
-	const {
-		title,
-		category,
-		subcategory,
-		description,
-		places,
-		participants,
-		address,
-	} = inputDetails;
-	const { token } = useSelector((state: RootStoreType) => state.user);
+	const { title, category, subcategory, description, places, address } =
+		inputDetails;
+	const { user, token } = useSelector((state: RootStoreType) => state.user);
 
 	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target;
@@ -80,7 +71,6 @@ const NewActivity = () => {
 					subcategory,
 					description,
 					places,
-					participants,
 					address
 				)
 			);
@@ -177,12 +167,13 @@ const NewActivity = () => {
 							<TextField
 								variant="outlined"
 								fullWidth
+								disabled
 								id="participants"
-								label="Number Of Participants"
+								label="Participants"
 								name="participants"
 								autoComplete="participants"
 								autoFocus
-								onChange={handleInputChange}
+								value={user.name}
 							/>
 						</Grid>
 						<Grid item xs={12} sm={6}>

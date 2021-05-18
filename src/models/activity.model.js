@@ -46,14 +46,9 @@ const activitySchema = new mongoose.Schema(
 			},
 		},
 		participants: {
-			type: Number,
+			type: Array,
+			deafult: [],
 			required: true,
-			default: 0,
-			validate(value) {
-				if (value < 0) {
-					throw new Error("Participants must be a postive number");
-				}
-			},
 		},
 		owner: {
 			type: mongoose.Schema.Types.ObjectId,
