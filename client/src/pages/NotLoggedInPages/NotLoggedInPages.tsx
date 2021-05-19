@@ -9,6 +9,8 @@ import GamesActivities from "../GamesActivities/GamesActivities";
 import SearchResult from "../SearchResult/SearchResult";
 import Signin from "../Signin/Signin";
 import Signup from "../Signup/Signup";
+import About from "../About/About";
+import User from "../User/User";
 
 const NotLoggedInPages = () => {
 	return (
@@ -25,6 +27,8 @@ const NotLoggedInPages = () => {
 			<Route exact path="/music" component={MusicActivities} />
 			<Route exact path="/games" component={GamesActivities} />
 			<Route exact path="/search" component={SearchResult} />
+			<Route exact path="/about" component={About} />
+			<Route exact path="/users/:id" component={User} />
 		</Switch>
 	);
 };

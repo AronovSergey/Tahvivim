@@ -11,6 +11,8 @@ import NewActivity from "../NewActivity/NewActivity";
 import Profile from "../Profile/Profile.js";
 import Favorites from "../Favorites/Favorites";
 import MyActivities from "../MyActivities/MyActivities";
+import About from "../About/About";
+import User from "../User/User";
 
 const LoggedInPages = () => {
 	return (
@@ -27,6 +29,8 @@ const LoggedInPages = () => {
 			<Route exact path="/search" component={SearchResult} />
 			<Route exact path="/favorites" component={Favorites} />
 			<Route exact path="/my_activities" component={MyActivities} />
+			<Route exact path="/about" component={About} />
+			<Route exact path="/users/:id" component={User} />
 		</Switch>
 	);
 };

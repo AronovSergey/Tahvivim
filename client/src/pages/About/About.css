@@ -1,0 +1,9 @@
+.about__img {
+	width: 100%;
+	height: 40vh;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+	justify-content: flex-end;
+	background-image: url("../../images/about.png");
+}

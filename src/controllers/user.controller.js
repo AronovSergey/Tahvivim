@@ -6,6 +6,16 @@ exports.getMyProfile = async (req, res) => {
 	res.send(req.user);
 };
 
+exports.getProfile = async (req, res) => {
+	try {
+		const user = await UserModel.findById(req.params.id);
+
+		res.status(200).json(user);
+	} catch (error) {
+		res.status(400).send(error.message);
+	}
+};
+
 exports.signin = async (req, res) => {
 	const user = new UserModel(req.body);
 	try {

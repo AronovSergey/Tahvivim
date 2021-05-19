@@ -23,6 +23,7 @@ router
 	.delete("/avatar", auth, userControler.deleteAvatar)
 	.post("/favorites", auth, userControler.addToFavorites)
 	.delete("/favorites", auth, userControler.removeFromFavorites)
-	.get("/favorites", auth, userControler.getAllFavorites);
+	.get("/favorites", auth, userControler.getAllFavorites)
+	.get("/:id", userControler.getProfile);
 
 module.exports = router;

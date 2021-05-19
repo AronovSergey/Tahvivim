@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import moment from "moment";
 import { useSelector } from "react-redux";
 
@@ -39,7 +39,8 @@ const TableRowUneditable: React.FC<TableRowInterface> = ({
 	onActivitySignupClick,
 	onActivityUnsignClick,
 }) => {
-	const { user } = useSelector((state: RootStoreType) => state.user);
+	const history = useHistory();
+	const { user, token } = useSelector((state: RootStoreType) => state.user);
 	const [inParticipants, setInParticipants] = useState(
 		participants.map((participant) => participant._id).includes(user._id)
 	);
@@ -100,10 +101,14 @@ const TableRowUneditable: React.FC<TableRowInterface> = ({
 									<IconButton
 										onClick={(e) => {
 											e.stopPropagation();
-											if (isFavorite) {
-												onRemoveFavoriteClick(_id);
+											if (token) {
+												if (isFavorite) {
+													onRemoveFavoriteClick(_id);
+												} else {
+													onFavoriteClick();
+												}
 											} else {
-												onFavoriteClick();
+												history.push("/signin");
 											}
 										}}
 									>
@@ -128,24 +133,28 @@ const TableRowUneditable: React.FC<TableRowInterface> = ({
 										<IconButton
 											onClick={(e) => {
 												e.stopPropagation();
-												setInParticipants(
-													!inParticipants
-												);
-												if (inParticipants) {
-													setLocalParticipants(
-														localParticipants.filter(
-															(participant) =>
-																participant._id !==
-																user._id
-														)
+												if (token) {
+													setInParticipants(
+														!inParticipants
 													);
-													onActivityUnsignClick();
+													if (inParticipants) {
+														setLocalParticipants(
+															localParticipants.filter(
+																(participant) =>
+																	participant._id !==
+																	user._id
+															)
+														);
+														onActivityUnsignClick();
+													} else {
+														setLocalParticipants([
+															...localParticipants,
+															user,
+														]);
+														onActivitySignupClick();
+													}
 												} else {
-													setLocalParticipants([
-														...localParticipants,
-														user,
-													]);
-													onActivitySignupClick();
+													history.push("/signin");
 												}
 											}}
 										>
