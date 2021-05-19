@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Activities from "../../components/activities/Activities";
 import { updateSearchParams } from "../../redux/actions/activities.actions";
+import SportsEsportsIcon from "@material-ui/icons/SportsEsports";
 
 const GamesActivities = () => {
 	const dispatch = useDispatch();
@@ -12,10 +13,12 @@ const GamesActivities = () => {
 	}, [dispatch]);
 	return (
 		<div>
-			<h1>
+			<div className="title">
+				<SportsEsportsIcon fontSize="large" color="secondary" />
 				<span className="primary-font">Games And Other</span> Activities
 				:
-			</h1>
+				<SportsEsportsIcon fontSize="large" color="secondary" />
+			</div>
 			<Activities />
 		</div>
 	);

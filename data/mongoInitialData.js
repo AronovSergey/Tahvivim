@@ -233,6 +233,23 @@ const activities = [
 		owner: userOneId,
 		ownerName: users[0].name,
 	},
+
+	{
+		title: "Catan Tournament",
+		description:
+			"Kerem House welcomes you to the first Settlers Tournament to end the summer in style!",
+		places: 10,
+		participants: [users[0]],
+		category: "Games And Other Activities",
+		subcategory: "Board Games",
+		date: "2021-05-22",
+		address: {
+			city: "Tel Aviv",
+		},
+		completed: true,
+		owner: userOneId,
+		ownerName: users[0].name,
+	},
 ];
 
 const start = async () => {

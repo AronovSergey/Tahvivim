@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Activities from "../../components/activities/Activities";
 import { updateSearchParams } from "../../redux/actions/activities.actions";
+import MusicNoteIcon from "@material-ui/icons/MusicNote";
 
 const MusicActivities = () => {
 	const dispatch = useDispatch();
@@ -10,9 +11,13 @@ const MusicActivities = () => {
 	}, [dispatch]);
 	return (
 		<div>
-			<h1>
+			<div className="title">
+				<MusicNoteIcon fontSize="large" color="secondary" />
 				<span className="primary-font">Music</span> Activities :
-			</h1>
+				Activities
+				<MusicNoteIcon fontSize="large" color="secondary" />
+			</div>
+
 			<Activities />
 		</div>
 	);
