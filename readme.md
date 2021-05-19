@@ -6,7 +6,7 @@ Choose your favorite activity out of a variaty of activities, and find partners 
 ## General information about my site
 
 -   Heroku Link: [Mine-Events](https://tahvivim.herokuapp.com "Tahvivim")
-    \_ Technology Wise:
+-   Technology Wise:
     -   Frontend
         -   React.js
         -   Redux.js (redux-thunk, actions, reducers, store)
