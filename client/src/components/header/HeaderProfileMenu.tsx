@@ -48,11 +48,11 @@ const HeaderProfileMenu: React.FC<Props> = ({
 		>
 			{!token && (
 				<div>
-					<MenuItem onClick={() => onButtonClick("login")}>
-						Login
-					</MenuItem>
 					<MenuItem onClick={() => onButtonClick("signin")}>
-						Signin
+						Sign In
+					</MenuItem>
+					<MenuItem onClick={() => onButtonClick("signup")}>
+						Sign Up
 					</MenuItem>
 				</div>
 			)}

@@ -7,17 +7,18 @@ import SportActivities from "../SportActivities/SportActivities";
 import MusicActivities from "../MusicActivities/MusicActivities";
 import GamesActivities from "../GamesActivities/GamesActivities";
 import SearchResult from "../SearchResult/SearchResult";
-import Login from "../Login/Login";
 import Signin from "../Signin/Signin";
+import Signup from "../Signup/Signup";
 
 const NotLoggedInPages = () => {
 	return (
 		<Switch>
 			<Redirect from="/create" exact to="/login" />
 			<Redirect from="/profile" exact to="/login" />
-			<Route exact path="/login" component={Login} />
+			<Redirect from="favorites" exact to="/login" />
+			<Redirect from="/my_activities" exact to="/login" />
 			<Route exact path="/signin" component={Signin} />
-			<Route exact path="/favorites" component={Signin} />
+			<Route exact path="/signup" component={Signup} />
 
 			<Route exact path="/" component={MainPage} />
 			<Route exact path="/sport" component={SportActivities} />

@@ -184,7 +184,7 @@ export const addToFavorites =
 		}
 	};
 
-/* --------------- Like a post  --------------- */
+/* --------------- Dislike a post  --------------- */
 export const removeFromFavorites =
 	(token: string, id: string) =>
 	async (dispatch: Dispatch<UserDispatchTypes>) => {

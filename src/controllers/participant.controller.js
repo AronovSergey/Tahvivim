@@ -16,7 +16,8 @@ exports.newParticipant = async (req, res) => {
 			{ $push: { participants: req.user } }
 		);
 
-		res.status(201).send(participant);
+		const activity = await ActivitiesModel.findById(req.body.activity);
+		res.status(201).send(activity);
 	} catch (error) {
 		res.status(400).send(error);
 	}
@@ -38,7 +39,8 @@ exports.removeParticipant = async (req, res) => {
 			{ $pull: { participants: req.user } }
 		);
 
-		res.send(participant);
+		const activity = await ActivitiesModel.findById(req.body.activity);
+		res.send(activity);
 	} catch (error) {
 		res.status(500).send();
 	}

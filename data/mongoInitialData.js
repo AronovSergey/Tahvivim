@@ -2,6 +2,7 @@ const app = require("../src/app");
 const mongoose = require("mongoose");
 const UserModel = require("../src/models/user.model");
 const ActivityModel = require("../src/models/activity.model");
+const ParticipantModel = require("../src/models/participant.model");
 
 const userOneId = new mongoose.Types.ObjectId();
 const userTwoId = new mongoose.Types.ObjectId();
@@ -237,13 +238,19 @@ const activities = [
 const start = async () => {
 	await UserModel.deleteMany();
 	await ActivityModel.deleteMany();
+	await ParticipantModel.deleteMany();
 
 	users.forEach(async (user) => {
 		await new UserModel(user).save();
 	});
 
 	activities.forEach(async (activity) => {
-		await new ActivityModel(activity).save();
+		const Activity = await new ActivityModel(activity).save();
+		const participant = new ParticipantModel({
+			user: Activity.owner,
+			activity: Activity._id,
+		});
+		await participant.save();
 	});
 };
 

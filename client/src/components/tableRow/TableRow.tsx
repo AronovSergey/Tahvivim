@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import moment from "moment";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import "./TableRow.css";
@@ -22,7 +23,9 @@ export interface TableRowInterface extends ActivityType {
 	isFavorite: boolean;
 	setIsFavorite: React.Dispatch<React.SetStateAction<boolean>>;
 	onFavoriteClick: () => void;
-	onRemoveFavoriteClick: () => void;
+	onRemoveFavoriteClick: (id: string) => void;
+	onActivitySignupClick: () => void;
+	onActivityUnsignClick: () => void;
 }
 
 const TableRow: React.FC<ActivityType> = ({
@@ -39,8 +42,10 @@ const TableRow: React.FC<ActivityType> = ({
 	address,
 	createdAt,
 	updatedAt,
+	removeOne,
 }) => {
 	const dispatch = useDispatch();
+	const { pathname } = useLocation();
 	const [isFavorite, setIsFavorite] = useState(false);
 	const { user, token } = useSelector((state: RootStoreType) => state.user);
 	const [showMore, setShowMore] = useState(false);
@@ -57,9 +62,36 @@ const TableRow: React.FC<ActivityType> = ({
 		dispatch(addToFavorites(token, _id));
 	};
 
-	const onRemoveFavoriteClick = () => {
+	const onRemoveFavoriteClick = (id: string) => {
 		dispatch(removeFromFavorites(token, _id));
+		if (pathname === "/favorites" && removeOne) removeOne(id);
 	};
+
+	const onActivitySignupClick = async () => {
+		try {
+			await axios.post(
+				`/api/participants`,
+				{ activity: _id },
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				}
+			);
+		} catch (error) {}
+	};
+
+	const onActivityUnsignClick = async () => {
+		try {
+			await axios.delete(`/api/participants`, {
+				data: { activity: _id },
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+		} catch (error) {}
+	};
+
 	const RenderTableRow = () => {
 		if (isEditable)
 			return (
@@ -81,6 +113,8 @@ const TableRow: React.FC<ActivityType> = ({
 					setIsFavorite={setIsFavorite}
 					onFavoriteClick={onFavoriteClick}
 					onRemoveFavoriteClick={onRemoveFavoriteClick}
+					onActivitySignupClick={onActivitySignupClick}
+					onActivityUnsignClick={onActivityUnsignClick}
 				/>
 			);
 		else
@@ -103,6 +137,8 @@ const TableRow: React.FC<ActivityType> = ({
 					setIsFavorite={setIsFavorite}
 					onFavoriteClick={onFavoriteClick}
 					onRemoveFavoriteClick={onRemoveFavoriteClick}
+					onActivitySignupClick={onActivitySignupClick}
+					onActivityUnsignClick={onActivityUnsignClick}
 				/>
 			);
 	};

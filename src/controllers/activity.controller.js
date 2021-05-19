@@ -1,4 +1,5 @@
 const ActivityModel = require("../models/activity.model");
+const ParticipantModel = require("../models/participant.model");
 
 exports.getAllActivities = async (req, res) => {
 	const match = {};
@@ -63,6 +64,13 @@ exports.createActivity = async (req, res) => {
 
 	try {
 		await activity.save();
+
+		const participant = new ParticipantModel({
+			user: req.user._id,
+			activity: activity._id,
+		});
+		await participant.save();
+
 		res.status(201).send(activity);
 	} catch (error) {
 		res.status(400).send(error);

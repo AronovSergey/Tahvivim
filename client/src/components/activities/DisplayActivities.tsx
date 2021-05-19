@@ -2,9 +2,10 @@ import React from "react";
 import TableRow from "../../components/tableRow/TableRow";
 import { ActivityType } from "../../redux/actionTypes/activities.actionTypes";
 
-const DisplayActivities: React.FC<{ activities: ActivityType[] }> = ({
-	activities,
-}) => {
+const DisplayActivities: React.FC<{
+	activities: ActivityType[];
+	removeOne?: (id: string) => void;
+}> = ({ activities, removeOne }) => {
 	return (
 		<div style={{ margin: "0 30px" }}>
 			{activities.map((activity, index) => (
@@ -30,6 +31,7 @@ const DisplayActivities: React.FC<{ activities: ActivityType[] }> = ({
 						createdAt={activity.createdAt}
 						updatedAt={activity.updatedAt}
 						address={activity.address}
+						removeOne={removeOne}
 					/>
 				</div>
 			))}

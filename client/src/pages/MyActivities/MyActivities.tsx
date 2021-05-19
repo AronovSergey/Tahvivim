@@ -6,39 +6,32 @@ import { RootStoreType } from "../../redux/store";
 import Spinner from "../../UI/Spinner/Spinner";
 import DisplayActivities from "../../components/activities/DisplayActivities";
 
-const Favorites = () => {
-	const [favorites, setFavorites] = useState<any[]>([]);
+const MyActivities = () => {
+	const [acivities, setAcivities] = useState([]);
 	const { token } = useSelector((state: RootStoreType) => state.user);
 
 	useEffect(() => {
 		(async () => {
-			const { data } = await axios.get("/api/users/favorites", {
+			const { data } = await axios.get("/api/participants", {
 				headers: {
 					Authorization: `Bearer ${token}`,
 				},
 			});
-			setFavorites(data);
+			setAcivities(data);
 		})();
 	}, [token]);
 
-	const removeOne = (id: string) => {
-		setFavorites(favorites.filter((favorite) => favorite._id !== id));
-	};
-
 	return (
 		<div>
-			{favorites.length === 0 && <Spinner />}
-			{favorites.length > 0 && (
+			{acivities.length === 0 && <Spinner />}
+			{acivities.length > 0 && (
 				<div>
-					<h1>Favorites :</h1>
-					<DisplayActivities
-						activities={favorites}
-						removeOne={removeOne}
-					/>
+					<h1>My Activities :</h1>
+					<DisplayActivities activities={acivities} />
 				</div>
 			)}
 		</div>
 	);
 };
 
-export default Favorites;
+export default MyActivities;

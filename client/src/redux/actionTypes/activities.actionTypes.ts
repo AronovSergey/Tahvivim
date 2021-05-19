@@ -20,11 +20,12 @@ export interface ActivityType {
 	subcategory?: string;
 	completed?: boolean;
 	places: number;
-	participants: [];
+	participants: any[];
 	address: AddressType;
 	createdAt?: string;
 	updatedAt?: string;
 	date: Date;
+	removeOne?: (id: string) => void;
 }
 
 export interface ActivitiesLoading {

@@ -6,23 +6,11 @@
 }
 
 .table_row__element {
-	border-right: 1px dotted #777;
 	padding: 20px;
 }
 
-.table_row__last_colmun {
-	border-right: none;
-}
-
-.table_row__read_more_container {
-	border: none;
-	padding: 0;
-}
-
-.table_row__description {
-	border-top: 1px dotted #777;
-	border-bottom: 1px dotted #777;
-	border-right: none;
+.table_row__right_border {
+	border-right: 1px dotted #777;
 }
 
 .table_row__top_border {
