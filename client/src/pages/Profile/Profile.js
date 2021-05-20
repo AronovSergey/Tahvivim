@@ -43,6 +43,7 @@ const Profile = () => {
 		formData.append("avatar", image, image.name);
 
 		dispatch(postUserProfileImage(token, formData));
+		window.location.reload();
 	};
 
 	const handleEditPicture = () => {
